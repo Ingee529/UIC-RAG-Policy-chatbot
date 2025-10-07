@@ -1,0 +1,22 @@
+2025-10-06 22:50:12,638 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:50:12,639 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+2025-10-06 22:50:12,692 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:50:12,692 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+2025-10-06 22:50:12,705 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:50:12,705 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+2025-10-06 22:50:12,716 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:50:12,716 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+2025-10-06 22:50:12,729 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:50:12,729 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+2025-10-06 22:50:12,751 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:50:12,752 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+2025-10-06 22:50:12,765 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:50:12,765 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+2025-10-06 22:50:12,776 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:50:12,776 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+INFO - Starting embedding generation
+2025-10-06 22:50:12,778 - EmbeddingTool - INFO - Starting embedding generation
+WARNING - Chunking directory does not exist: chunk_output/naive_chunks_metadata
+2025-10-06 22:50:12,778 - EmbeddingTool - WARNING - Chunking directory does not exist: chunk_output/naive_chunks_metadata
+INFO - Embedding generation completed
+2025-10-06 22:50:12,778 - EmbeddingTool - INFO - Embedding generation completed

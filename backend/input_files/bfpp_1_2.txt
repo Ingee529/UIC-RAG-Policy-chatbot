@@ -1,0 +1,172 @@
+1.2 Conducting, Recording and Reporting Financial Activity
+================================================================================
+
+Category: Fiscal Environment
+Document ID: bfpp_1_2
+
+
+Body
+----------------------------------------
+
+Budgeting University
+
+1.2 Conducting, Recording and Reporting
+Policies &
+Financial Activity
+
+
+Procedures
+----------------------------------------
+
+1 Fiscal
+Environment
+
+Funding
+Language for Manual, all business and accounting of the system must conform to Generally
+Board of
+Accepted Accounting Principles (GAAP) and practices for educational institutions
+Trustees Roll
+established, in order of precedence, by:
+Call Items and
+Contracts
+1. Statewide Accounting Management System (SAMS), Illinois State
+1.1 System Comptroller
+Annual
+2. Officially established accounting principles of the Government Accounting
+Financial
+
+,
+and Processes
+
+Manual.
+Laws
+
+Employee Gift
+Policy
+Business and accounting of the system’s financial activities must be conducted,
+Fraud recorded, and reported in a manner appropriate to the type of transaction. It also
+Prevention and must adhere to additional system-wide standards.
+Awareness
+Basis of Accounting
+Approval of
+Financial
+The system reports financial activity using the accrual accounting method. In accrual
+Documents
+
+received. Expenses are reported when materials or services are received, not
+necessarily when money is paid out. Although some revenue and expense transactions
+are recorded throughout the year, at year-end all must be recorded for inclusion in
+annual reports. Recording revenue and expenses on the accrual basis requires that:
+Revenue earned at a reporting date, but not yet received, is added and recorded
+as a receivable.
+Revenue received, but applicable to future periods, is subtracted and recorded
+as unearned revenue.
+Expenses incurred at a reporting date, but not yet paid, are added and a payable
+is recorded.
+Expenses paid, but applicable to future periods, are subtracted and recorded as a
+prepaid expense.
+Accruals and Deferrals
+https://www.busfin.uillinois.edu/bfpp/section-1-intro-business-financial-functions/how-accounting-is-conducted 2/4
+
+Financial activity may occur before the related transactions have formally processed
+through the appropriate Banner financial system. In other cases, financial activity that
+covers more than one financial accounting period may be recorded in Banner. When
+these situations occur, temporary entries that adjust for the timing of these
+transactions may be recorded at the end of a financial period. This provides more
+accurate financial reporting as of the end of that period.
+Entries that add unrecorded financial activity are referred to as accruals. Entries that
+adjust for activity that belongs to a future period are referred to as deferrals. When
+accruals and deferrals are recorded at the end of a particular accounting period, they
+must be reversed at the beginning of the next accounting period so the transactions
+will not be duplicated or misstated in future accounting periods. Units may initiate
+accrual and deferral entries only for these fund types:
+Self-Supporting
+Services plans
+Plant
+Your unit may (or in some cases must) process accrual and deferral entries at the end
+of an accounting period.
+
+Additional
+
+
+Policy Statement
+----------------------------------------
+
+Unless otherwise stated in the Business and Financial Policies and
+
+
+Standards
+----------------------------------------
+
+Board (GASB)
+Report
+3. GASB Technical Bulletins, applicable, American Institute of Certified Public
+1.2 Conducting, Accountants (AICPA) Audit and Accounting Guides, and AICPA Statements
+Recording and of Position
+Reporting
+4. AICPA Practice Bulletins, applicable to Colleges and Universities
+Financial
+Activity 5. GASB Implementation Guides (Q&As) published by the GASB staff, as well as
+practices that are widely recognized and prevalent in the College and
+1.3 Unit University environment
+Financial
+6. Financial Accounting and Reporting Manual, National Association of College
+Health
+and University Business Officers (NACUBO) and other accounting guidance
+provided by NACUBO.
+1.4 University
+and System The Banner General Ledger and Operating Ledger systems constitute the official
+financial record of the University of Illinois System. The system reports financial
+https://www.busfin.uillinois.edu/bfpp/section-1-intro-business-financial-functions/how-accounting-is-conducted 1/4
+
+Offices Deficit activity using the accrual accounting method.
+Reporting
+Reason for the Policy
+1.5 Conducting
+Business
+Outside the Centralized accounting processes maintain the system’s chart of accounts and other
+State of Illinois
+methods for classifying financial data. These processes also ensure the integrity of the
+data recorded in the financial record and permit comparison to formal spending
+1.6
+
+
+Exceptions
+----------------------------------------
+
+authority (budgets, appropriations, etc.) for fiscal control purposes. These centralized
+to Business and
+
+Financial
+Policies,
+
+
+Applicability
+----------------------------------------
+
+of the Policy
+
+All business and accounting of the system, unless otherwise stated in the Business and
+Comply with
+Anti-Bribery Financial Policies and
+
+
+Resources
+----------------------------------------
+
+University Accounting Fund Types
+University of Illinois Annual Financial Reports
+
+and Comptroller | Effective: July 2021
+Business and Finance
+For questions or concerns about the BusFin site, please contact sharedservices@uillinois.edu.
+
+Urbana-Champaign
+https://www.busfin.uillinois.edu/bfpp/section-1-intro-business-financial-functions/how-accounting-is-conducted 3/4
+
+Chicago
+Springfield
+Regional campuses
+
+https://www.busfin.uillinois.edu/bfpp/section-1-intro-business-financial-functions/how-accounting-is-conducted 4/4
+

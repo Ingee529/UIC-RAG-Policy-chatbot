@@ -1,0 +1,90 @@
+{
+  "queries": {
+    "q1": "What are the financial reporting requirements for UIC?",
+    "q2": "How should custodial funds be managed?",
+    "q3": "What is the policy for payroll processing?",
+    "q4": "How are receivables collected at UIC?",
+    "q5": "What are the procedures for deficit reporting?"
+  },
+  "quality_metrics": {
+    "q1": {
+      "has_results": true,
+      "num_results": 5,
+      "avg_score": 0.8374741911888123,
+      "top_score": 0.8523216247558594,
+      "score_range": [
+        0.8213026523590088,
+        0.8523216247558594
+      ],
+      "categories": [
+        "Finance/Accounting",
+        "Finance/Billing",
+        "Reporting/Analytics"
+      ]
+    },
+    "q2": {
+      "has_results": true,
+      "num_results": 5,
+      "avg_score": 0.9450268983840943,
+      "top_score": 0.9710768461227417,
+      "score_range": [
+        0.9322853088378906,
+        0.9710768461227417
+      ],
+      "categories": [
+        "Policy Management",
+        "Finance/Accounting",
+        "Accounting / Financial Systems"
+      ]
+    },
+    "q3": {
+      "has_results": true,
+      "num_results": 5,
+      "avg_score": 0.8529781341552735,
+      "top_score": 0.8552083969116211,
+      "score_range": [
+        0.84919273853302,
+        0.8552083969116211
+      ],
+      "categories": [
+        "Human Resources / Payroll Management",
+        "Financial Management",
+        "Finance/Accounting"
+      ]
+    },
+    "q4": {
+      "has_results": true,
+      "num_results": 5,
+      "avg_score": 0.8565129995346069,
+      "top_score": 0.8645825982093811,
+      "score_range": [
+        0.8509255647659302,
+        0.8645825982093811
+      ],
+      "categories": [
+        "Finance/Accounting",
+        "Financial Management",
+        "Finance"
+      ]
+    },
+    "q5": {
+      "has_results": true,
+      "num_results": 5,
+      "avg_score": 0.8307150363922119,
+      "top_score": 0.8755172491073608,
+      "score_range": [
+        0.815253496170044,
+        0.8755172491073608
+      ],
+      "categories": [
+        "Finance/Accounting",
+        "Finance/Billing",
+        "Financial Management"
+      ]
+    }
+  },
+  "overall": {
+    "success_rate": 1.0,
+    "avg_score": 0.8645414519309998
+  }
+}

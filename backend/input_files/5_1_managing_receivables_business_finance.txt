@@ -1,0 +1,193 @@
+5.1 Managing Receivables - Business & Finance
+================================================================================
+
+Category: Receivables
+Document ID: 5_1_managing_receivables_business_finance
+
+
+Policy Statement
+----------------------------------------
+
+All units must comply with the State of Illinois, University of Illinois System, and
+
+generally accepted accounting requirements for accounts receivable. Utilizing the
+
+Banner Accounts Receivable (Banner AR) system for accounts receivable
+
+management facilitates this compliance. Every unit must record its receivables in
+
+Banner AR. If this is not possible (e.g., due to HIPAA compliance), then the unit must
+
+request and receive approval to manage their accounts receivable outside of the
+
+Banner AR system. Units that do not use Banner AR must properly manage their
+
+accounts receivable (which includes timely reporting within Banner and properly
+
+handling collection efforts), and they must also compile and submit their accounts
+
+receivable data to UAFR on a quarterly basis to ensure compliance with UAFR’s
+
+quarterly accounts receivable reporting requirements to the State of Illinois.
+
+Reason for the Policy
+
+The system is subject to and complies with state regulations including:
+
+Illinois State Collection Act of 1986, Statewide Accounting Management System
+
+(SAMS), and the Revised Uniform Unclaimed Property Act (726 ILCS 1026). These
+
+acts mandate that the system must:
+
+Assess monthly late payment charges on delinquent receivables balances.
+
+Perform and track collection activities on all accounts with a balance of $25 or
+
+more that are 30 days past due (which would include Student Accounts
+Receivable (SAR) when the student is no longer enrolled).
+
+5.2.1 Obtain
+
+5.2.2 Create a
+
+5.2.3 Process
+
+5.2.4
+Determine
+
+Whether a
+Student Charge
+
+https://www.busfin.uillinois.edu/bfpp/section-5-receivables/policy-for-managing-receivables
+
+5.2.5 Process
+
+5.2.6 Process
+
+5.3.1 Calculate
+
+5.3.2 Collect
+
+
+Resources
+----------------------------------------
+
+Submit receivable balances of $1,000 or more with the Illinois Comptroller’s
+
+State Offset System when they are more than 90 days past due. The Offset
+
+System deducts the amount owed from Illinois wages, tax refunds, lottery
+
+winnings, and other state payments.
+
+Obtain permission from the State Attorney General’s Office to write off
+
+uncollectible receivables over $1,000.
+
+Submit Quarterly Accounts Receivable reports to the State Office of the
+
+Comptroller. These reports must include the beginning quarterly accounts
+
+receivable balances, changes to the balances during the quarter, delinquent
+
+amounts and how long they have been delinquent (aging amounts), estimated
+
+uncollectible balances, write-off totals with details, and information about
+
+collection activity.
+
+Submit the system’s Annual Financial Report to the State of Illinois Governor’s
+
+Office and the Office of the Auditor General. This report must include all
+
+receivable balances at fiscal year end.
+
+Return all credit balances of $10 or more to the customer. Credit balances not
+returned to the customer must be transferred to the Unclaimed Property fund
+
+and returned to the State of Illinois after three years. If an individual presents
+
+documentation of a credit balance and requests a refund check after the balance
+has been transferred to Unclaimed Property, forward the individual’s name,
+
+address, and refund amount to University Payables and University Accounting
+
+and Financial Reporting (UAFR).
+
+
+Applicability of the Policy
+----------------------------------------
+
+This policy applies to all units that generate accounts receivable.
+
+In addition to State of Illinois regulations, the system requires the following:
+
+Ensure separation of duties and responsibilities to meet auditing requirements
+as outlined in 9 Audits, Internal Control, and Business System Security.
+
+Encumber SAR with past due balances over $1,500 by placing financial holds
+
+immediately before advance registration.
+
+Review all accounts receivable transactions each month for accuracy. This
+
+review confirms that customers who are expected to owe the system for goods
+or services have been charged the right amount and that no customers have
+
+been charged in error.
+
+If unable to bring accounts current after completing internal due diligence, place
+
+accounts with a third-party collection agency that will perform due diligence
+and:
+
+Evaluate the cost effectiveness of litigation and make recommendation to
+
+the system.
+
+https://www.busfin.uillinois.edu/bfpp/section-5-receivables/policy-for-managing-receivables
+
+Close and return all uncollected accounts to the system within one year.
+
+Record all accounts receivable to the Banner General Ledger and reconcile
+against records monthly. Identify and resolve all differences.
+
+The system complies with generally accepted accounting principles (GAAP) as
+
+established by the Governmental Accounting Standards Board (GASB) for state and
+
+local government entities. These require the system to:
+
+Accrue accounts receivable at fiscal year end.
+
+Estimate an allowance for uncollectible receivables and record in the General
+
+Ledger.
+
+Related Policies and Procedures
+
+5.3.2 Collect Delinquent Accounts Receivable
+
+9 Audits, Internal Control, and Business System Security
+
+10.1.2 Implement Internal Controls for Handling Cash and/or Checks
+
+
+Additional Resources
+----------------------------------------
+
+General Ledger Reports KnowledgeBase
+
+Illinois State Collection Act of 1986
+
+Reconcile AR Transactions Ledgers to Accounts Receivable
+
+Revised Uniform Unclaimed Property Act (726 ILCS 1026)
+
+Statewide Accounting Management System (SAMS)
+
+https://www.busfin.uillinois.edu/bfpp/section-5-receivables/policy-for-managing-receivables
+
+For questions or concerns about the BusFin site, please contact sharedservices@uillinois.edu.
+

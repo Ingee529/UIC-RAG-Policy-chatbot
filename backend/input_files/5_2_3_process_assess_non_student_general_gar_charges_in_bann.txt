@@ -1,0 +1,169 @@
+5.2.3 Process (Assess) Non-Student (General-GAR) Charges in Banner AR - Business & Finance
+================================================================================
+
+Category: Receivables
+Document ID: 5_2_3_process_assess_non_student_general_gar_charges_in_bann
+
+
+Body
+----------------------------------------
+
+5.2.3 Process (Assess) Non-Student (General-GAR) Charges in Banner AR - Business & Finance
+
+5.2.3 Process (Assess) Non-Student (General
+GAR) Charges in Banner Accounts Receivable
+(Banner AR)
+
+
+Policy Statement
+----------------------------------------
+
+The University of Illinois System prefers payment for goods and services at or before
+
+the point of sale. If payment is not required at that point, the unit must have a sound
+
+business reason before extending credit. Be aware that extending credit does not
+
+guarantee repayment.
+
+Units must assess all customer charges in Banner Accounts Receivable (Banner AR)
+
+no later than 30 days after providing the good or service to the customer. If
+
+documented circumstances beyond a unit’s control prevents a unit from meeting the
+
+30-day assessment deadline, the unit must email Accounts Receivable Operations
+
+(ARO) at aroperations@uillinois.edu to request an exemption.
+
+There is no minimum charge amount; however University Bursar does not send bills
+
+when the balance is less than $5.00.
+
+Reason for the Policy
+
+Assessment of all customer (non-student) charges in Banner AR no later than 30 days
+
+after providing the good or service to the customer is required to maintain accounting
+
+best practices.
+
+5.2.1 Obtain
+
+5.2.2 Create a
+
+5.2.3 Process
+
+5.2.4
+Determine
+
+Whether a
+Student Charge
+
+https://www.busfin.uillinois.edu/bfpp/section-5-receivables/assess-non-student-general-gar-charges-banner-ar
+
+5.2.3 Process (Assess) Non-Student (General-GAR) Charges in Banner AR - Business & Finance
+
+5.2.5 Process
+
+5.2.6 Process
+
+5.3.1 Calculate
+
+5.3.2 Collect
+
+
+Applicability of the Policy
+----------------------------------------
+
+Assessment of all non-student charges in Banner AR.
+
+
+Procedures
+----------------------------------------
+
+To assess non-student charges in Banner AR:
+
+For help creating an internal invoicing system, contact ARO for sample invoices at
+
+aroperations@uillinois.edu.
+
+Enter the invoice number. Without an invoice number, Banner AR will automatically
+
+assign one for billing purposes. If no invoicing system exists, the unit must still create
+
+and maintain an auditable method of documenting charges in the event that a
+
+customer disputes a charge or requests a detailed explanation of a charge.
+
+1. Use the unit's invoicing or record-keeping system to create and maintain
+
+detailed documentation of all charges assessed in Banner AR.
+
+2. Send a copy of the invoice or equivalent documentation to the customer.
+
+3. If the customer account does not exist, submit a GAR Account Creation
+
+Request form.
+
+4. Ensure a Banner C-FOAP exists for each type of charge being assessed. If no
+
+Banner C-FOAP exists, submit.
+
+5. Ensure a Detail Code exists for each type of charge assessed in Banner AR. If
+
+no Detail Code exists, submit a Detail Code Request form. For assistance,
+
+contact ARO at aroperations@uillinois.edu. (Banner detail codes identify
+each receivable transaction as a charge or payment.)
+
+6. Enter the charge in Banner AR using one of these methods:
+
+Individual or small volume assessments—Banner form TFADETL
+
+Same amount to more than one account—TFAMASS
+
+Recurring high-volume assessments—Banner "feeder." For information
+
+7. If a Banner AR feeder is used to submit the charges, verify the transactions
+
+using Interface Error Reports (FIINTERFAC) in Mobius View (formerly
+
+View Direct; VPN access required).
+
+Any erroneous charges must be corrected as soon as possible after discovery of error
+
+(University Bursar does not make these corrections):
+
+For overcharges, post a negative charge to the account in Banner AR.
+
+For undercharges, post an additional charge to the account in Banner AR.
+
+https://www.busfin.uillinois.edu/bfpp/section-5-receivables/assess-non-student-general-gar-charges-banner-ar
+
+5.2.3 Process (Assess) Non-Student (General-GAR) Charges in Banner AR - Business & Finance
+
+Related Policies and Procedures
+
+5.2.2 Create a New Non-Student (GAR) Account
+
+Banner FOAPAL Request Form
+
+Detail Code Request form
+
+GAR Account Creation Request (multiple requests)
+
+GAR Account Creation Request (single request)
+
+
+Additional Resources
+----------------------------------------
+
+Accounts Receivable Processing Welcome Kit
+
+For questions or concerns about the BusFin site, please contact sharedservices@uillinois.edu.
+
+https://www.busfin.uillinois.edu/bfpp/section-5-receivables/assess-non-student-general-gar-charges-banner-ar
+
+5.2.3 Process (Assess) Non-Student (General-GAR) Charges in Banner AR - Business & Finance
+

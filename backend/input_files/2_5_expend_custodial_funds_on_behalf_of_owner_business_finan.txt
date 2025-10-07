@@ -1,0 +1,297 @@
+2.5 Expend Custodial Funds on Behalf of Owner - Business & Finance
+================================================================================
+
+Category: Custodial Funds
+Document ID: 2_5_expend_custodial_funds_on_behalf_of_owner_business_finan
+
+
+Policy Statement
+----------------------------------------
+
+University of Illinois System units serving as liaisons between the system and owners
+
+of money held in custodial funds are responsible for expending custodial funds at the
+
+request of the fund owner. They accomplish this by submitting transactions to initiate
+
+the expenditure and retaining documentation needed to support the expenditure.
+
+Since these funds are not owned by the system:
+
+Expenditure limits, rates, and policies applicable to system funds do not apply to
+custodial funds unless otherwise stated in 2 Custodial Funds.
+
+State of Illinois procurement regulations do not apply to expenditure of custodial
+
+funds unless the owner is an agency, office, or unit of the State of Illinois.
+
+The system may not procure its own goods and services by expending custodial
+funds.
+
+Invoice or other appropriate documentation of the nature and purpose of the
+
+expenditure must be obtained and retained by the liaison unit for all expenditure
+
+transactions.
+
+To process a gift to the system from the owner of a custodial fund, see 2.6 Process a
+
+Transaction between the University and the Owner of a Custodial Fund.
+
+To return funds to the owner, rather than expend them on the owner's behalf, see 2.7
+
+Return Custodial Funds to the Owner.
+
+the Need for a
+
+
+Responsibilities
+----------------------------------------
+
+on Behalf of
+Owner
+
+https://www.busfin.uillinois.edu/bfpp/section-2-agency-funds/expend-agency-funds-on-behalf-of-owner
+
+Liaison units may not expend custodial funds using system purchase orders (Banner
+
+or iBuy) unless the owner and system have entered into a contract that provides for
+
+use of system purchase orders.
+
+When the recipient of the expenditure is not a non-resident alien, liaison units may
+
+expend custodial funds using one of the following methods, provided the related steps
+
+outlined in this process are followed:
+
+Banner journal vouchers, when procuring goods and services from the system.
+
+PCards or TCards held by the liaison unit, provided system policies, dollar limits,
+
+and controls established for use of PCards/TCards are met. PCards/TCards will
+
+not be issued directly to owners of custodial funds, and physical possession of
+
+cards may not be transferred to non-system personnel. No modifications to
+
+system software, profiles, Merchant Category Code groupings, etc. will be made
+to accommodate card use on behalf of custodial fund owners. See 7.6 The
+
+University Purchasing Card (PCard).
+
+Emburse Enterprise system.
+
+needed documentation and confirm the recipient's legal eligibility to receive payment
+
+before agreeing to reimburse or procure services from the non-resident alien. Liaison
+
+units that do not wish to facilitate these payments must inform the owner prior to
+
+executing their Custodial Fund Agreement that:
+
+The owner may not arrange for services by or reimbursements to a non-resident
+alien that will be paid from their custodial fund, and
+
+The owner's custodial funds cannot be used to pay non-resident aliens.
+
+A custodial fund owner cannot use the system sales tax exemption number to avoid
+
+custodial fund expenditures for procurement of taxable goods unless the liaison unit
+
+has retained on file a copy of the owner's sales tax exemption letter. The liaison unit
+
+must provide the owner's sales tax exemption number (and letter if requested) to the
+
+vendor at the point of purchase.
+
+System stores units may, but are not required to, sell goods to owners of custodial
+
+funds. Units that sell goods to owners of custodial funds must collect and remit sales
+
+tax according to 18.6 Sales and Use Tax/Goods and Services Tax unless the owner
+
+or liaison provides a copy of the owner's sales tax exemption letter.
+
+
+Procedures
+----------------------------------------
+
+https://www.busfin.uillinois.edu/bfpp/section-2-agency-funds/expend-agency-funds-on-behalf-of-owner
+
+To expend custodial funds on behalf of an owner, follow the procedures below.
+
+When the recipient of the expenditure is not a non-
+resident alien:
+
+1. Determine whether to make the expenditure using a journal voucher,
+
+PCard/TCard, or Emburse Enterprise.
+
+Use a journal voucher when:
+
+Procuring goods or services from a system unit, or
+
+Correcting an error in the original posting of a Banner transaction
+
+as described in 2.6 Process a Transaction between the University
+and the Owner of a Custodial Fund.
+
+Use a PCard/TCard when procuring goods or services from an external
+
+vendor.
+
+Use Emburse Enterprise when:
+
+Procuring goods and services from an external vendor, or
+
+Reimbursing an individual for payments made on behalf of the
+
+owner.
+
+2. Process the transaction:
+
+If using a journal voucher:
+
+Verify that the transaction is adequately supported as an expenditure
+made on behalf of the owner and that adequate invoice documentation
+
+to explain the purpose of the expenditure is retained in unit files.
+
+Verify that the expenditure (in conjunction with any other pending
+expenditures) will not create an overdraft in the custodial fund. If an
+
+overdraft will be created, obtain additional funding from the owner or
+discuss with University Accounting and Financial Reporting (UAFR)
+prior to processing the expenditure.
+
+If procurement of goods are from a system storeroom, assure that sales
+tax is included in the payment unless the owner’s sales tax exemption
+documentation (not the University of Illinois System sales tax exempt
+
+identification number) is provided to the storeroom as required in the
+Policy Statement above.
+
+Process the journal voucher in Banner.
+
+If using a PCard or TCard
+
+Verify that the transaction is adequately supported as an expenditure
+
+made on behalf of the owner and that adequate invoice documentation
+to explain the purpose of the expenditure is retained in unit files.
+
+Verify that the transaction will not violate any system limits or policies
+for card usage.
+
+overdraft will be created, obtain additional funding from the owner or
+discuss with UAFR prior to processing the expenditure.
+
+When procuring goods, assure that sales tax is included in the payment
+
+unless the owner’s sales tax exemption documentation (not the
+system’s sales tax exempt identification number) is provided to the
+vendor as required in Before You Begin above. Caution: When using a
+
+PCard or TCard for web purchases, make sure that any system sales tax
+exemption defaults are not applied.
+
+Process the card transaction with the vendor.
+
+If using the Emburse Enterprise System:
+
+Obtain a completed Expenditure from 9D Custodial Funds form from
+
+the owner or an authorized representative of the owner organization.
+
+Verify that adequate invoice documentation to explain the purpose of
+the expenditure is retained in unit files.
+
+Verify the payee is not a non-resident alien. If the payee is a non-
+resident alien, follow the appropriate process in the section below.
+
+Determine payee vendor identification number in the Accounts
+
+Payable system and enter it on the Expenditure from 9D Custodial
+Funds form. If the payee does not have a vendor identification number,
+request one. To determine how to identify or request a vendor
+
+identification number, consult Vendor Setup.
+
+Sign the liaison attestation on the authorization form.
+
+When procuring goods, assure that sales tax is included in the payment
+unless the owner’s sales tax exemption documentation (not the
+system’s sales tax exempt identification number) is provided to the
+
+vendor as required in Before You Begin above.
+
+Process the disbursement transaction in the Emburse Enterprise
+
+system, attaching the fully completed
+
+Expenditure from 9D Custodial Funds form and any other
+
+documentation needed to support the transaction.
+
+3. Verify that the expenditure is accurately recorded in the custodial fund.
+
+When the recipient of the expenditure is a non-
+resident alien:
+
+1. Verify that payments to the individual are permissible prior to contracting
+
+for services from or agreeing to reimburse the individual by following these
+
+steps:
+
+Obtain payee visa status.
+
+See Payments to Foreign Nationals to determine payment eligibility
+and required documentation.
+
+Consult with the Office of University Payroll and Benefits (UPB) to
+address any questions not resolved by referring to the website.
+
+When required documents and information have been obtained,
+
+submit them to UPB to verify that the payment is permissible.
+
+2. After confirming the payment is permissible, inform the individual that they
+
+may provide services or acquire goods or services for reimbursement.
+
+3. After the individual has performed the service or acquired the goods or
+
+services:
+
+Complete the Expenditure from 9D Custodial Funds form and
+forward it to UPB to generate the payment.
+
+4. Verify that the expenditure is accurately recorded in the custodial fund.
+
+Expenditure from 9D Custodial Funds
+
+Related Policies and Procedures
+
+8 Payments and Reimbursements
+
+8.1.3 Determine the Allowability of Specific Expenditures—Financial Assistance
+and Sponsorship Payments to Outside Organizations
+
+11.3 Campus Processing of Gifts
+
+
+Additional Resources
+----------------------------------------
+
+Emburse Enterprise Resource Page
+
+https://www.busfin.uillinois.edu/bfpp/section-2-agency-funds/expend-agency-funds-on-behalf-of-owner
+
+Restricted Items and Purchases Requiring Special Approval
+
+First published: December 2014 | Last Updated April 2025 | Last Reviewed February
+
+For questions or concerns about the BusFin site, please contact sharedservices@uillinois.edu.
+

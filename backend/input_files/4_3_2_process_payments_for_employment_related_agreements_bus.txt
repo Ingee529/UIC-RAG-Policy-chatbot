@@ -1,0 +1,124 @@
+4.3.2 Process Payments for Employment-Related Agreements - Business & Finance
+================================================================================
+
+Category: Payroll
+Document ID: 4_3_2_process_payments_for_employment_related_agreements_bus
+
+
+Body
+----------------------------------------
+
+4.3.2 Process Payments for Employment-Related Agreements - Business & Finance
+
+
+Responsibilities
+----------------------------------------
+
+4.1.1 Serve as a
+
+4.1.2 Set up a
+
+New Unit or
+Location for
+
+4.1.3 Set Up
+Payroll
+
+Function in
+Banner and
+
+4.1.4 Change an
+Employee's Job
+
+4.3.2 Process Payments for Employment-
+Related Agreements
+
+
+Policy Statement
+----------------------------------------
+
+Employment-related agreements are executed under limited circumstances according
+
+to various university policies. These agreements include payments for any of the
+
+following:
+
+Liquidated damages related to employment
+
+Lump sum payments (e.g. bonuses) received by an employee that are related to
+services rendered for a specific period of time that exceeds one academic year.
+
+Only fully-executed agreements, bearing the appropriate approvals, are processed by
+
+withholding; however, all such payments are subject to federal and state income tax
+
+and Medicare/OASDI withholding (if applicable).
+
+
+Procedures
+----------------------------------------
+
+To process a payment for an employment-related agreement:
+
+1. Central Human Resources loads the executed Final Agreement into Web
+
+Xtender/BDMS (doc type: Agreement).
+
+4.3.2 Process Payments for Employment-Related Agreements - Business & Finance
+
+2. Unit submits an ajustment to University Payroll & Benefits (UPB), using the
+
+PARIS web application.
+
+Initiating a Prior Underpayment Adjustment (PUA) Job Change
+
+University of Illinois Training and Development Resources
+
+3. When UPB receives the PARIS underpayment adjustment (PUA) and is able
+
+to review the signed fully-executed agreement in Web Xtender, UPB will
+
+validate the earn code to ensure proper withholding as instructed by the
+
+agreement; ensure memos have been added and will process accordingly.
+
+Related Policies and Procedures
+
+4.3.1 Adjust an Employee's Pay (Underpayments)
+
+4.3.3 Process Employee Recognition Awards
+
+Business and Finance | Effective: March 2021
+
+4.1.5 Handle
+
+4.2.1 Submit
+
+4.2.2 Report Tip
+Income
+
+4.3.1 Adjust an
+
+4.3.2 Process
+
+4.3.3 Process
+
+4.3.4 Correct
+
+
+Overpayments
+----------------------------------------
+
+4.3.5 Submit
+Taxable Fringe
+
+4.3.6 Process
+
+
+Separation
+----------------------------------------
+
+4.3.2 Process Payments for Employment-Related Agreements - Business & Finance
+
+For questions or concerns about the BusFin site, please contact sharedservices@uillinois.edu.
+

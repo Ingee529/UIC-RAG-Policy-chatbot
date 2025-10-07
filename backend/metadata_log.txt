@@ -1,0 +1,18 @@
+2025-10-06 22:52:33,560 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:52:33,560 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+2025-10-06 22:52:33,605 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:52:33,605 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+2025-10-06 22:52:33,612 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:52:33,612 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+2025-10-06 22:52:33,618 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:52:33,618 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+2025-10-06 22:52:35,130 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:52:35,130 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+2025-10-06 22:52:35,139 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:52:35,139 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+2025-10-06 22:52:35,145 - GPUVerifier - INFO - GPU Available: True
+2025-10-06 22:52:35,145 - GPUVerifier - INFO - GPU Info: {'pytorch_mps': {'device': 'Apple Silicon MPS', 'note': 'Running on Apple GPU (Metal)'}}
+usage: metadata_gen.py [-h] [--chunks_dir CHUNKS_DIR]
+                       [--output_dir OUTPUT_DIR]
+                       [--evaluation_dir EVALUATION_DIR] [--evaluate]
+metadata_gen.py: error: unrecognized arguments: --chunking_method naive

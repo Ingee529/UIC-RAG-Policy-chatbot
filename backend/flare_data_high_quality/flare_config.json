@@ -1,0 +1,21 @@
+{
+  "vector_dimension": 384,
+  "embedding_model": "Snowflake/arctic-embed-s",
+  "retriever_type": "faiss_ivfflat",
+  "metadata_fields": [
+    "source",
+    "index",
+    "content_type",
+    "chunking_type",
+    "coherence_score"
+  ],
+  "total_documents": 38,
+  "chunking_methods": [
+    "recursive",
+    "semantic"
+  ],
+  "quality_metrics": {
+    "avg_text_length": 1398.7105263157894,
+    "total_chunks": 38
+  }
+}

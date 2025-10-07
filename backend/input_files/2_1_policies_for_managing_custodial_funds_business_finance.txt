@@ -1,0 +1,194 @@
+2.1 Policies for Managing Custodial Funds - Business & Finance
+================================================================================
+
+Category: Custodial Funds
+Document ID: 2_1_policies_for_managing_custodial_funds_business_finance
+
+
+Body
+----------------------------------------
+
+To ensure compliance with GASB Statement 84, the term "Agency Funds" has now been
+changed to "Custodial Funds."
+
+If a unit needs to act as a custodian to hold non-University of Illinois System funds for
+
+an external entity (called the "owner"), the unit may need to create a custodial fund.
+
+The chart below provides examples:
+
+Typical Status of Fund Owner
+
+Payroll/benefit withholding, sales tax
+holding, financial aid, other clearing
+
+Governments, charities, health
+care providers, pension funds
+
+Governments, not-for-profit and
+for-profit corporations
+
+Not-for-profit and for-profit
+corporations
+
+Student organizations (includes some
+
+staff and similar organizations)
+
+the Need for a
+
+
+Responsibilities
+----------------------------------------
+
+on Behalf of
+Owner
+
+https://www.busfin.uillinois.edu/bfpp/section-2-agency-funds/policies-managing-agency-funds
+
+A custodial fund is a fund held by the system in a purely custodial capacity as a fiscal
+
+agent for the owner of the money.
+
+Money Held for Individuals
+
+The system will not hold personal funds of individuals in a fund type 9D custodial
+
+fund, unless the individuals are students participating in a study abroad program as
+
+outlined in 22 Self-Supporting/Revenue Generating Activities—Account for Study
+
+Abroad and Unique Instructional Activities.
+
+The system will hold funds on behalf of groups of individuals in fund type 9D custodial
+
+funds only when they have formalized their relationship through articles of
+
+association, bylaws, partnership agreements, or a similar document that establishes
+
+the group's decision-making protocol and defines the purpose of the group.
+
+Groups of individuals within the system community (primarily faculty, staff, students,
+
+or their immediate families) must become either a registered organization or a
+
+registered student organization in order for the system to hold their money in a
+
+custodial fund. The system will administer the organization's money as a fund type 9G
+
+registered organization fund.
+
+External entity for whom the system creates and manages a custodial fund.
+
+Role of the University of Illinois System
+
+The system acts as a fiscal agent to hold non-system funds for the owner. The
+
+custodial fund money is not owned by the system. Owner activities recorded in
+
+custodial funds must be consistent with the system’s mission of instruction, research,
+
+public service, and economic development. If used in collaboration with system
+
+programs, custodial funds must record only the financial activity of the owner, not the
+
+system. Unless separately contracted, the system performs only these basic
+
+bookkeeping functions for owners:
+
+Deposits money in a system bank account
+
+Maintains a record of transactions and balances in the Banner general ledger
+
+Processes cash receipts, disbursements, and journal entries as directed by the
+owner
+
+Reports transactions and balances to the fund owner
+
+Issues an IRS Form 1099 for disbursements to external parties paid from the
+
+custodial fund as required by the IRS. The system is not responsible for issuing
+
+1099s to external parties from any other funds held by the owner.
+
+Reports to the IRS disbursements paid from the custodial fund to non-resident
+
+The system does not pay interest on money held in custodial funds. Additional
+
+services may be provided by the system in its discretion and pursuant to an
+
+agreement between the unit and the custodial fund owner. For additional information,
+
+contact UAFR at uas@uillinois.edu.
+
+Inactive or abandoned balances in custodial funds will be treated as unclaimed
+
+property in compliance with State of Illinois requirements.
+
+Role of a Unit
+
+Before a custodial fund can be established, a system unit must agree to act as liaison
+
+between the system and the owner. As liaison, the unit may not assume liability or
+
+responsibility for the owner’s actions on the part of the system. For additional
+
+information on the responsibilities of the unit, consult 2.4 Comply with Liaison
+
+Responsibilities for an Custodial Fund.
+
+Role of the Owner
+
+The owner is ultimately responsible for the management of the financial activity
+
+accounted for by the custodial fund. Owners must:
+
+Perform regular reconciliation of Banner monthly financial reports.
+
+When asked, provide copies of the reconciliation to the unit.
+
+Supply supporting documentation requested by the system to process
+
+transactions.
+
+Maintain a positive cash balance.
+
+File required sales and other tax returns not prepared by the system.
+
+Maintain organizational documentation, such as income and sales tax exempt
+status.
+
+Ensure the organization does not implicitly or explicitly represent itself as a part
+
+of the system in publications, through logo use, through use of the system’s tax-
+exempt status, etc.
+
+Sign an agreement indicating they understand their responsibilities and agree to
+follow the system’s terms for holding money as an agent.
+
+Termination of a Custodial Fund
+Relationship
+
+The system may terminate the custodial fund relationship at any time.
+
+The system may bill the owner for overdrafts. Owners who repeatedly incur or fail to
+
+resolve overdrafts may have their custodial fund relationship with the system
+
+terminated.
+
+The system may charge owners for system services provided, overdrafts incurred, or
+
+otherwise violating terms and conditions of the custodial fund relationship.
+
+Related Policies and Procedures
+
+10 Obtain Approval as a Cash Handling Unit
+
+22 Self-Supporting/Revenue Generating Activities—Account for Study Abroad
+and Unique Instructional Activities
+
+First published: December 2014 | Last Updated February 2024 | Last Reviewed
+
+For questions or concerns about the BusFin site, please contact sharedservices@uillinois.edu.
+
