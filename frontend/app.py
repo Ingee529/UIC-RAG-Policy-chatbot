@@ -36,7 +36,7 @@ def get_backend_safe():
     if not st.session_state.backend_loaded:
         st.session_state.backend_loading = True
         try:
-            with st.spinner("正在載入 RAG 後端..."):
+            with st.spinner("Loading RAG backend..."):
                 from rag_backend import get_backend
                 st.session_state.backend = get_backend()
                 st.session_state.backend_loaded = True
@@ -45,7 +45,7 @@ def get_backend_safe():
         except Exception as e:
             st.session_state.backend_error = str(e)
             st.session_state.backend_loading = False
-            st.error(f"❌ 無法載入 RAG 後端: {e}")
+            st.error(f"❌ Failed to load RAG backend: {e}")
             return None
 
     return st.session_state.backend
@@ -115,7 +115,7 @@ if "show_welcome" not in st.session_state:
 # Header
 col1, col2 = st.columns([1, 5])
 with col1:
-    st.markdown("# 🏛️")
+    st.image("uic.png", width=150, use_container_width=False)
 with col2:
     st.title("UIC Policy Assistant")
     st.caption("AI-powered assistant for University of Illinois Chicago Vice Chancellor's Office policies")
@@ -155,8 +155,8 @@ with st.sidebar:
         USE_REAL_BACKEND = True
     elif 'backend_error' in st.session_state and st.session_state.backend_error:
         st.warning("⚠️ **Demo Mode**: Using simulated responses")
-        st.error(f"後端載入失敗: {st.session_state.backend_error}")
-        if st.button("🔄 重試載入後端"):
+        st.error(f"Failed to load backend: {st.session_state.backend_error}")
+        if st.button("🔄 Retry loading backend"):
             st.session_state.backend_loaded = False
             st.session_state.backend_error = None
             st.session_state.backend_loading = False
@@ -164,14 +164,14 @@ with st.sidebar:
         USE_REAL_BACKEND = False
     elif 'backend_loading' in st.session_state and st.session_state.backend_loading:
         st.info("🔄 **Loading**: Initializing RAG backend...")
-        if st.button("❌ 取消載入"):
+        if st.button("❌ Cancel loading"):
             st.session_state.backend_loading = False
-            st.session_state.backend_error = "用戶取消載入"
+            st.session_state.backend_error = "User canceled loading"
             st.rerun()
         USE_REAL_BACKEND = False
     else:
         st.info("🔄 **Ready**: Click to initialize RAG backend")
-        if st.button("🚀 初始化 RAG 後端"):
+        if st.button("🚀 Initialize RAG backend"):
             backend = get_backend_safe()
             st.rerun()
         USE_REAL_BACKEND = False
