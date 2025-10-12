@@ -6,13 +6,19 @@ import sys
 import os
 from pathlib import Path
 
+# Get absolute path to frontend directory
+frontend_dir = Path(__file__).parent.resolve() / "frontend"
+app_file = frontend_dir / "app.py"
+
 # Add frontend directory to Python path
-frontend_dir = Path(__file__).parent / "frontend"
 sys.path.insert(0, str(frontend_dir))
+
+# Read the app file before changing directory
+with open(app_file, encoding="utf-8") as f:
+    app_code = f.read()
 
 # Change to frontend directory for relative file access (uic.png, etc.)
 os.chdir(frontend_dir)
 
-# Execute the main app from frontend directory
-with open(frontend_dir / "app.py", encoding="utf-8") as f:
-    exec(f.read())
+# Execute the main app
+exec(app_code)
