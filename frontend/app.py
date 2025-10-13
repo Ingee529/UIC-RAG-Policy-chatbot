@@ -57,14 +57,19 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS for UIC branding
+# Custom CSS for UIC official branding
 st.markdown("""
 <style>
-    /* UIC Brand Colors - matching official website */
+    /* UIC Official Brand Colors */
     :root {
         --uic-red: #D50032;
-        --uic-navy: #001E62;
-        --uic-light-gray: #F7F9FC;
+        --uic-primary-blue: #003E7E;
+        --uic-dark-blue: #002C5F;
+        --uic-medium-blue: #005293;
+        --uic-light-blue: #4A90C9;
+        --uic-dark-gray: #333333;
+        --uic-gray: #666666;
+        --uic-light-gray: #CCCCCC;
     }
 
     /* Main app - white background */
@@ -72,20 +77,21 @@ st.markdown("""
         background-color: #FFFFFF;
     }
 
-    /* Headers - Navy Blue */
+    /* Headers - UIC Primary Blue */
     h1, h2, h3 {
-        color: var(--uic-navy) !important;
+        color: var(--uic-primary-blue) !important;
         font-weight: 700;
     }
 
-    /* Button styling - Navy Blue primary, Red for accents */
+    /* Button styling - Primary Blue with red hover */
     .stButton > button {
-        background-color: var(--uic-navy);
+        background-color: var(--uic-primary-blue);
         color: white;
         border: none;
         border-radius: 4px;
         padding: 0.5rem 1.5rem;
         font-weight: 600;
+        transition: background-color 0.3s ease;
     }
 
     .stButton > button:hover {
@@ -93,29 +99,51 @@ st.markdown("""
         border: none;
     }
 
-    /* Sidebar - light background */
+    /* Sidebar - light gray background */
     [data-testid="stSidebar"] {
-        background-color: var(--uic-light-gray);
+        background-color: #F5F5F5;
+    }
+
+    /* Sidebar headers */
+    [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3 {
+        color: var(--uic-primary-blue) !important;
     }
 
     /* Info/warning boxes - red accent */
     .stAlert {
         border-left: 4px solid var(--uic-red);
-        background-color: var(--uic-light-gray);
+        background-color: #F5F5F5;
     }
 
-    /* Expander header - navy */
+    /* Success boxes - blue accent */
+    .stSuccess {
+        border-left: 4px solid var(--uic-primary-blue);
+    }
+
+    /* Expander header */
     .streamlit-expanderHeader {
-        color: var(--uic-navy);
+        color: var(--uic-primary-blue);
         font-weight: 600;
     }
 
     /* Chat messages */
     [data-testid="stChatMessage"] {
-        background-color: var(--uic-light-gray);
+        background-color: #F5F5F5;
+        border-radius: 8px;
     }
 
-    /* Red accents for important numbers/stats */
+    /* Links */
+    a {
+        color: var(--uic-primary-blue);
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: var(--uic-red);
+        text-decoration: underline;
+    }
+
+    /* Metrics and stats - red for emphasis */
     .metric-value {
         color: var(--uic-red);
         font-weight: 700;

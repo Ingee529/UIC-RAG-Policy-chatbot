@@ -5,11 +5,11 @@ headless = true
 gatherUsageStats = false
 
 [theme]
-# UIC Brand Colors - matching official website
+# UIC Official Brand Colors
 primaryColor = "#D50032"        # UIC Red (accents, numbers, highlights)
 backgroundColor = "#FFFFFF"      # White background (main)
-secondaryBackgroundColor = "#F7F9FC"  # Very light blue-gray for cards
-textColor = "#001E62"           # UIC Navy Blue (primary text)
+secondaryBackgroundColor = "#F5F5F5"  # Light gray for cards
+textColor = "#003E7E"           # UIC Primary Blue (main text and headings)
 font = "sans serif"
 
 # Light theme base
