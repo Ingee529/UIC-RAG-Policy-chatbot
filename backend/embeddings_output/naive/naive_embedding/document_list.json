@@ -1,0 +1,21 @@
+{
+  "documents": [
+    "5_1_managing_receivables_business_finance",
+    "5_3_2_collect_delinquent_accounts_receivable_business_financ",
+    "2_1_policies_for_managing_custodial_funds_business_finance",
+    "4_2_1_submit_employee_work_time_business_finance",
+    "2_4_comply_with_unit_liaison_responsibilities_for_a_custodia",
+    "5_2_3_process_assess_non_student_general_gar_charges_in_bann",
+    "bfpp_1_2",
+    "4_3_2_process_payments_for_employment_related_agreements_bus",
+    "2_5_expend_custodial_funds_on_behalf_of_owner_business_finan",
+    "4_3_4_correct_payroll_overpayments_business_finance",
+    "bfpp_1_6",
+    "bfpp_1_3"
+  ],
+  "total_chunks": 757,
+  "chunking_type": "naive",
+  "embedding_type": "naive",
+  "model_name": "Snowflake/arctic-embed-s",
+  "created_at": "2025-10-07 00:10:29"
+}

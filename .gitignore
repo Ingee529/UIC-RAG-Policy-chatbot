@@ -93,3 +93,10 @@ backend/metadata/*.pkl
 !backend/chunk_output/.gitkeep
 !backend/retrieval_output/.gitkeep
 !backend/metadata/.gitkeep
+
+# Exception: Include naive embedding files for Streamlit Cloud
+!backend/embeddings_output/naive/
+!backend/embeddings_output/naive/naive_embedding/
+!backend/embeddings_output/naive/naive_embedding/*.faiss
+!backend/embeddings_output/naive/naive_embedding/*.pkl
+!backend/embeddings_output/naive/naive_embedding/*.json
