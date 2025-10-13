@@ -57,85 +57,130 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS for UIC official branding
+# Custom CSS for UIC official branding - clean and readable
 st.markdown("""
 <style>
     /* UIC Official Brand Colors */
     :root {
         --uic-red: #D50032;
         --uic-primary-blue: #003E7E;
-        --uic-dark-blue: #002C5F;
         --uic-medium-blue: #005293;
         --uic-light-blue: #4A90C9;
         --uic-dark-gray: #333333;
         --uic-gray: #666666;
-        --uic-light-gray: #CCCCCC;
     }
 
-    /* Main app - white background */
+    /* Main app - clean white background */
     .stApp {
-        background-color: #FFFFFF;
+        background-color: #FFFFFF !important;
     }
 
-    /* Headers - UIC Primary Blue */
-    h1, h2, h3 {
+    /* Main content area */
+    .main .block-container {
+        background-color: #FFFFFF;
+        padding-top: 2rem;
+    }
+
+    /* Headers - UIC Blue (not too dark) */
+    h1 {
         color: var(--uic-primary-blue) !important;
         font-weight: 700;
     }
 
-    /* Button styling - Primary Blue with red hover */
+    h2, h3 {
+        color: var(--uic-medium-blue) !important;
+        font-weight: 600;
+    }
+
+    /* Paragraph text - readable dark gray */
+    p, li, span {
+        color: var(--uic-dark-gray);
+    }
+
+    /* Button styling - softer blue with red hover */
     .stButton > button {
-        background-color: var(--uic-primary-blue);
+        background-color: var(--uic-medium-blue);
         color: white;
         border: none;
-        border-radius: 4px;
-        padding: 0.5rem 1.5rem;
+        border-radius: 6px;
+        padding: 0.6rem 1.5rem;
         font-weight: 600;
-        transition: background-color 0.3s ease;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .stButton > button:hover {
         background-color: var(--uic-red);
-        border: none;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
 
-    /* Sidebar - light gray background */
+    /* Sidebar - white with subtle border */
     [data-testid="stSidebar"] {
-        background-color: #F5F5F5;
+        background-color: #FFFFFF !important;
+        border-right: 1px solid #E0E0E0;
     }
 
-    /* Sidebar headers */
-    [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3 {
+    /* Sidebar text - dark and readable */
+    [data-testid="stSidebar"] * {
+        color: var(--uic-dark-gray) !important;
+    }
+
+    /* Sidebar headers - blue */
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3 {
         color: var(--uic-primary-blue) !important;
+        font-weight: 600;
     }
 
-    /* Info/warning boxes - red accent */
+    /* Info boxes - subtle with red accent */
     .stAlert {
         border-left: 4px solid var(--uic-red);
-        background-color: #F5F5F5;
+        background-color: #FFF5F5;
+        color: var(--uic-dark-gray);
     }
 
     /* Success boxes - blue accent */
     .stSuccess {
-        border-left: 4px solid var(--uic-primary-blue);
+        border-left: 4px solid var(--uic-medium-blue);
+        background-color: #F0F7FF;
+    }
+
+    /* Chat messages - very light background */
+    [data-testid="stChatMessage"] {
+        background-color: #F8F9FA;
+        border-radius: 8px;
+        border: 1px solid #E9ECEF;
+        padding: 1rem;
+    }
+
+    /* User message */
+    [data-testid="stChatMessage"][data-testid*="user"] {
+        background-color: #E3F2FD;
+        border-left: 3px solid var(--uic-light-blue);
+    }
+
+    /* Assistant message */
+    [data-testid="stChatMessage"][data-testid*="assistant"] {
+        background-color: #F8F9FA;
+        border-left: 3px solid var(--uic-gray);
     }
 
     /* Expander header */
     .streamlit-expanderHeader {
-        color: var(--uic-primary-blue);
+        color: var(--uic-medium-blue);
         font-weight: 600;
+        background-color: #F8F9FA;
+        border-radius: 4px;
+        padding: 0.5rem;
     }
 
-    /* Chat messages */
-    [data-testid="stChatMessage"] {
-        background-color: #F5F5F5;
-        border-radius: 8px;
-    }
-
-    /* Links */
+    /* Links - blue with red hover */
     a {
-        color: var(--uic-primary-blue);
+        color: var(--uic-medium-blue);
         text-decoration: none;
+        font-weight: 500;
     }
 
     a:hover {
@@ -143,10 +188,24 @@ st.markdown("""
         text-decoration: underline;
     }
 
+    /* Top toolbar - subtle */
+    header[data-testid="stHeader"] {
+        background-color: #FFFFFF;
+        border-bottom: 1px solid #E0E0E0;
+    }
+
+    /* Remove dark backgrounds */
+    .stApp > header,
+    section[data-testid="stSidebar"] > div,
+    footer {
+        background-color: #FFFFFF !important;
+    }
+
     /* Metrics and stats - red for emphasis */
     .metric-value {
         color: var(--uic-red);
         font-weight: 700;
+        font-size: 2rem;
     }
 </style>
 """, unsafe_allow_html=True)
