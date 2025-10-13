@@ -60,47 +60,65 @@ st.set_page_config(
 # Custom CSS for UIC branding
 st.markdown("""
 <style>
-    /* UIC Brand Colors */
+    /* UIC Brand Colors - matching official website */
     :root {
         --uic-red: #D50032;
-        --uic-blue: #5B9BD5;
         --uic-navy: #001E62;
+        --uic-light-gray: #F7F9FC;
     }
 
-    /* Header styling */
-    .stApp header {
-        background-color: var(--uic-red);
+    /* Main app - white background */
+    .stApp {
+        background-color: #FFFFFF;
     }
 
-    /* Button styling */
+    /* Headers - Navy Blue */
+    h1, h2, h3 {
+        color: var(--uic-navy) !important;
+        font-weight: 700;
+    }
+
+    /* Button styling - Navy Blue primary, Red for accents */
     .stButton > button {
-        background-color: var(--uic-red);
+        background-color: var(--uic-navy);
         color: white;
         border: none;
         border-radius: 4px;
-        padding: 0.5rem 1rem;
-        font-weight: 500;
+        padding: 0.5rem 1.5rem;
+        font-weight: 600;
     }
 
     .stButton > button:hover {
-        background-color: #B8002D;
+        background-color: var(--uic-red);
         border: none;
     }
 
-    /* Sidebar styling */
+    /* Sidebar - light background */
     [data-testid="stSidebar"] {
-        background-color: #F8F8F8;
+        background-color: var(--uic-light-gray);
     }
 
-    /* Info box styling */
+    /* Info/warning boxes - red accent */
     .stAlert {
         border-left: 4px solid var(--uic-red);
+        background-color: var(--uic-light-gray);
     }
 
-    /* Expander header */
+    /* Expander header - navy */
     .streamlit-expanderHeader {
-        color: var(--uic-red);
+        color: var(--uic-navy);
         font-weight: 600;
+    }
+
+    /* Chat messages */
+    [data-testid="stChatMessage"] {
+        background-color: var(--uic-light-gray);
+    }
+
+    /* Red accents for important numbers/stats */
+    .metric-value {
+        color: var(--uic-red);
+        font-weight: 700;
     }
 </style>
 """, unsafe_allow_html=True)
