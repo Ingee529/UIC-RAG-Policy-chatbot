@@ -3,3 +3,14 @@ headless = true
 
 [browser]
 gatherUsageStats = false
+
+[theme]
+# UIC Brand Colors
+primaryColor = "#D50032"        # UIC Red (primary accent)
+backgroundColor = "#FFFFFF"      # White background
+secondaryBackgroundColor = "#F5F5F5"  # Light gray for cards
+textColor = "#1E1E1E"           # Dark text
+font = "sans serif"
+
+# Additional UIC-inspired styling
+base = "light"

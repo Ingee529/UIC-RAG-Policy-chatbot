@@ -57,6 +57,54 @@ st.set_page_config(
     layout="wide"
 )
 
+# Custom CSS for UIC branding
+st.markdown("""
+<style>
+    /* UIC Brand Colors */
+    :root {
+        --uic-red: #D50032;
+        --uic-blue: #5B9BD5;
+        --uic-navy: #001E62;
+    }
+
+    /* Header styling */
+    .stApp header {
+        background-color: var(--uic-red);
+    }
+
+    /* Button styling */
+    .stButton > button {
+        background-color: var(--uic-red);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+    }
+
+    .stButton > button:hover {
+        background-color: #B8002D;
+        border: none;
+    }
+
+    /* Sidebar styling */
+    [data-testid="stSidebar"] {
+        background-color: #F8F8F8;
+    }
+
+    /* Info box styling */
+    .stAlert {
+        border-left: 4px solid var(--uic-red);
+    }
+
+    /* Expander header */
+    .streamlit-expanderHeader {
+        color: var(--uic-red);
+        font-weight: 600;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Sample documents (excerpts from actual policy files)
 SAMPLE_DOCS = {
     "1.1": {
