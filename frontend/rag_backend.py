@@ -19,15 +19,25 @@ import numpy as np
 # Import Gemini for answer generation
 try:
     import google.generativeai as genai
-    from dotenv import load_dotenv
-
-    # Load .env from backend
-    env_path = BACKEND_DIR / ".env"
-    load_dotenv(env_path)
-
     GEMINI_AVAILABLE = True
-    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-    GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-flash-latest")
+
+    # Try to get API key from Streamlit secrets first (for Streamlit Cloud)
+    try:
+        import streamlit as st
+        GEMINI_API_KEY = st.secrets.get("Gemini_API_KEY")
+        GEMINI_MODEL = st.secrets.get("GEMINI_MODEL", "gemini-1.5-flash")
+        if GEMINI_API_KEY:
+            print("✅ Using Gemini API key from Streamlit secrets")
+    except (ImportError, FileNotFoundError, KeyError):
+        # Fallback to .env file (for local development)
+        from dotenv import load_dotenv
+        env_path = BACKEND_DIR / ".env"
+        load_dotenv(env_path)
+        GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+        GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+        if GEMINI_API_KEY:
+            print("✅ Using Gemini API key from .env file")
+
 except ImportError:
     GEMINI_AVAILABLE = False
     GEMINI_API_KEY = None
