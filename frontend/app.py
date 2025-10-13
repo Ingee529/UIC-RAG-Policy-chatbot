@@ -97,10 +97,10 @@ st.markdown("""
         color: var(--uic-dark-gray);
     }
 
-    /* Button styling - softer blue with red hover */
+    /* Button styling - clean blue with white text */
     .stButton > button {
         background-color: var(--uic-medium-blue);
-        color: white;
+        color: white !important;
         border: none;
         border-radius: 6px;
         padding: 0.6rem 1.5rem;
@@ -110,9 +110,17 @@ st.markdown("""
     }
 
     .stButton > button:hover {
-        background-color: var(--uic-red);
+        background-color: var(--uic-primary-blue);
         transform: translateY(-1px);
         box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        color: white !important;
+    }
+
+    /* Button text - force white */
+    .stButton > button p,
+    .stButton > button span,
+    .stButton > button div {
+        color: white !important;
     }
 
     /* Sidebar - white with subtle border */
@@ -188,17 +196,43 @@ st.markdown("""
         text-decoration: underline;
     }
 
-    /* Top toolbar - subtle */
+    /* Top toolbar - clean white */
     header[data-testid="stHeader"] {
-        background-color: #FFFFFF;
-        border-bottom: 1px solid #E0E0E0;
+        background-color: #FFFFFF !important;
+        border-bottom: none;
     }
 
-    /* Remove dark backgrounds */
+    /* Remove ALL dark backgrounds - force white everywhere */
     .stApp > header,
     section[data-testid="stSidebar"] > div,
-    footer {
+    footer,
+    .stApp footer,
+    [data-testid="stBottomBlockContainer"],
+    .main footer,
+    div[class*="footer"],
+    .stChatFloatingInputContainer,
+    .stChatInputContainer {
         background-color: #FFFFFF !important;
+        color: var(--uic-dark-gray) !important;
+    }
+
+    /* Chat input area - white background */
+    .stChatFloatingInputContainer {
+        background-color: #FFFFFF !important;
+        border-top: 1px solid #E0E0E0;
+        padding: 1rem;
+    }
+
+    /* Input field */
+    input, textarea {
+        background-color: #FFFFFF !important;
+        border: 1px solid #E0E0E0 !important;
+        color: var(--uic-dark-gray) !important;
+    }
+
+    /* Remove any remaining dark elements */
+    * {
+        scrollbar-color: var(--uic-medium-blue) #F0F0F0;
     }
 
     /* Metrics and stats - red for emphasis */
