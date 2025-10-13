@@ -25,7 +25,8 @@ try:
     try:
         import streamlit as st
         GEMINI_API_KEY = st.secrets.get("Gemini_API_KEY")
-        GEMINI_MODEL = st.secrets.get("GEMINI_MODEL", "gemini-1.5-flash")
+        GEMINI_MODEL = st.secrets.get("GEMINI_MODEL", "gemini-flash-latest")
+        TEMPERATURE = float(st.secrets.get("TEMPERATURE", "0.5"))
         if GEMINI_API_KEY:
             print("✅ Using Gemini API key from Streamlit secrets")
     except (ImportError, FileNotFoundError, KeyError):
@@ -34,7 +35,8 @@ try:
         env_path = BACKEND_DIR / ".env"
         load_dotenv(env_path)
         GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-        GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+        GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-flash-latest")
+        TEMPERATURE = float(os.getenv("TEMPERATURE", "0.5"))
         if GEMINI_API_KEY:
             print("✅ Using Gemini API key from .env file")
 
@@ -96,9 +98,9 @@ class RAGBackend:
                 self.llm = genai.GenerativeModel(
                     model_name=GEMINI_MODEL,
                     generation_config={
-                        "temperature": 0.3,
+                        "temperature": TEMPERATURE,
                         "top_p": 0.95,
-                        "max_output_tokens": 1024,
+                        "max_output_tokens": 2048,
                     }
                 )
                 print(f"✅ Gemini LLM initialized: {GEMINI_MODEL}")
