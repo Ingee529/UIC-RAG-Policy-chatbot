@@ -134,10 +134,10 @@ with st.sidebar:
 
     st.header("👥 Team Members")
     st.markdown("""
-    - Haswatha Sridharan
-    - Vamshi Krishna Aileni
-    - Hsin-Jui Yang
-    - Honglin Liu
+    - [Haswatha Sridharan](https://www.linkedin.com/in/haswatha-sridharan)
+    - [Vamshi Krishna Aileni](https://linkedin.com/in/vamshi-krishna-1490b4187)
+    - [Hsin-Jui Yang](https://www.linkedin.com/in/yonce-yang-93a731314/)
+    - [Honglin Liu](https://www.linkedin.com/in/honglin-liu-8850b038b)
     """)
 
     st.header("📚 Available Policies")
