@@ -136,8 +136,8 @@ with st.sidebar:
     st.markdown("""
     - Haswatha Sridharan
     - Vamshi Krishna Aileni
-    - Yang Hsin-Jui
-    - Liu Honglin
+    - Hsin-Jui Yang
+    - Honglin Liu
     """)
 
     st.header("📚 Available Policies")
