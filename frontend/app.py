@@ -132,6 +132,14 @@ with st.sidebar:
     - Source citation and transparency
     """)
 
+    st.header("👥 Team Members")
+    st.markdown("""
+    - Haswatha Sridharan
+    - Vamshi Krishna Aileni
+    - Yang Hsin-Jui
+    - Liu Honglin
+    """)
+
     st.header("📚 Available Policies")
     st.markdown("""
     - Financial Reporting
