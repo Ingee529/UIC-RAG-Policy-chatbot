@@ -75,6 +75,10 @@ temp/
 Thumbs.db
 .DS_Store
 
+# R
+.Rhistory
+.RData
+
 # Streamlit
 .streamlit/secrets.toml
 
