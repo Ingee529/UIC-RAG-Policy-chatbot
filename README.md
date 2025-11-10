@@ -1,6 +1,7 @@
 # UIC Policy Assistant
 
 AI-powered assistant for University of Illinois Chicago Vice Chancellor's Office policies using Meta Retrieval-Augmented Generation (MetaRAG).
+https://uic-rag-policy-chatbot-3gxe8bfd4cc6crnecfsj4g.streamlit.app
 
 ## Overview
 
