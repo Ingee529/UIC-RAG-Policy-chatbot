@@ -943,7 +943,7 @@ import faiss
 import pickle
 
 # Initialize OpenAI client and model
-openai_api_key = os.getenv("OPENAI_API_KEY", "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")
+openai_api_key = os.getenv("OPENAI_API_KEY", "YOUR_API_KEY")
 client = OpenAI(api_key=openai_api_key)
 use_gpt4 = False  # Set True to use GPT-4 if available
 chat_model = "gpt-4" if use_gpt4 else "gpt-3.5-turbo"
