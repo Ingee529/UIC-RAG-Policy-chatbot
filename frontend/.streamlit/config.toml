@@ -3,3 +3,14 @@ headless = true
 
 [browser]
 gatherUsageStats = false
+
+[client]
+toolbarMode = "auto"
+
+[theme]
+base = "light"
+primaryColor = "#001E62"           # UIC Navy Pier Blue (按鈕顏色)
+backgroundColor = "#f0f0f0"         # 淺灰色背景
+secondaryBackgroundColor = "#f0f0f0" # 淺灰色側邊欄
+textColor = "#333333"              # 官方 UIC Steel Gray (用於文字)
+font = "sans serif"

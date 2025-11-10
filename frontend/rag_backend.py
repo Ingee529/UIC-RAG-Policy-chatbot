@@ -176,12 +176,20 @@ class RAGBackend:
                 'sources': []
             }
 
-        # Compile context from top results
+        # Compile context from top results with document names
         context_parts = []
+        source_names = []
         for i, result in enumerate(results[:3], 1):
             text = result['text']
             summary = result.get('summary', '')
-            context_parts.append(f"Source {i}:\nContent: {text}\nSummary: {summary}")
+            doc_id = result.get('document_id', f'Document {i}')
+            category = result.get('primary_category', 'Policy Document')
+
+            # Create a readable document name
+            doc_name = f"{category} - {doc_id}" if doc_id != f'Document {i}' else category
+            source_names.append(doc_name)
+
+            context_parts.append(f"Source {i} ({doc_name}):\nContent: {text}\nSummary: {summary}")
 
         context = "\n\n".join(context_parts)
 
@@ -197,6 +205,13 @@ Relevant Policy Information:
 
 Instructions:
 - Synthesize the information from the sources to provide a helpful answer
+- **IMPORTANT: When you reference information from a source, cite it inline using this exact format: 【source_1】, 【source_2】, or 【source_3】**
+- For information from Source 1, write: 【source_1】
+- For information from Source 2, write: 【source_2】
+- For information from Source 3, write: 【source_3】
+- Place the citation immediately after the relevant statement
+- Example: "The policy requires annual reporting【source_1】"
+- You can use multiple citations: "This applies to all units【source_1】【source_2】"
 - Use the document titles, content, and summaries to construct your response
 - If the sources discuss policies, procedures, or responsibilities related to the topic, explain them
 - Focus on what the documents DO say rather than what they don't say

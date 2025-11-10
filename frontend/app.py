@@ -5,11 +5,37 @@ A demo frontend for the MetaRAG system
 import streamlit as st
 import json
 import random
+import re
 from pathlib import Path
 import sys
+import base64
 
 # Try to import the RAG backend
 USE_REAL_BACKEND = False
+
+
+def get_base64_image(image_path):
+    """將圖片轉換為 base64 編碼"""
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
+
+
+def load_custom_css():
+    """載入 styles.css 檔案"""
+    try:
+        # 使用絕對路徑確保能找到 CSS 文件
+        css_path = Path(__file__).parent / "styles.css"
+        with open(css_path, "r", encoding="utf-8") as f:
+            css_content = f.read()
+            st.markdown(f"<style>{css_content}</style>", unsafe_allow_html=True)
+            
+        # 僅載入 CSS，移除 JS 注入以避免閃爍與快取問題
+        
+    except FileNotFoundError:
+        st.error(f"❌ 樣式檔 'styles.css' 未找到。路徑: {css_path}")
+    except Exception as e:
+        st.error(f"❌ 載入樣式檔時發生錯誤: {e}")
+
 
 def get_backend_safe():
     """安全地獲取後端，如果失敗則返回 None"""
@@ -56,6 +82,8 @@ st.set_page_config(
     page_icon="🏛️",
     layout="wide"
 )
+
+load_custom_css()
 
 # Sample documents (excerpts from actual policy files)
 SAMPLE_DOCS = {
@@ -125,29 +153,64 @@ with st.sidebar:
     st.header("About")
     st.info("""
     This is a demonstration of the MetaRAG system for UIC Vice Chancellor's Office policies.
-
-    **Features:**
-    - Retrieval-Augmented Generation (RAG)
-    - Semantic search across policy documents
-    - Source citation and transparency
     """)
-
-    st.header("👥 Team Members")
+    st.subheader("🎓 Faculty Advisor")
+    st.markdown("[Fatemeh Sarayloo, Ph.D.](https://business.uic.edu/profiles/sarayloo-fatemeh/)")
+    
+    # Teaching Assistant with LinkedIn icon
+    linkedin_path = Path(__file__).parent / "linkedin.jpeg"
+    st.markdown(f"""
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <h3 style="margin: 0;">🧑‍🏫 Teaching Assistant</h3>
+        <img src="data:image/jpeg;base64,{get_base64_image(linkedin_path)}" width="25" style="margin-bottom: 5px;">
+    </div>
+    """, unsafe_allow_html=True)
+    st.markdown("[Mokshit Surana](https://www.linkedin.com/in/mokshitsurana/)")
+    
+    # Team Members with LinkedIn icon
+    st.markdown(f"""
+    <div style="display: flex; align-items: center; gap: 10px; margin-top: 15px; margin-bottom: 10px;">
+        <h2 style="margin: 0;">👥 Team Members</h2>
+        <img src="data:image/jpeg;base64,{get_base64_image(linkedin_path)}" width="25" style="margin-bottom: 5px;">
+    </div>
+    """, unsafe_allow_html=True)
     st.markdown("""
-    - [Haswatha Sridharan](https://www.linkedin.com/in/haswatha-sridharan)
-    - [Vamshi Krishna Aileni](https://linkedin.com/in/vamshi-krishna-1490b4187)
-    - [Hsin-Jui Yang](https://www.linkedin.com/in/yonce-yang-93a731314/)
-    - [Honglin Liu](https://www.linkedin.com/in/honglin-liu-8850b038b)
+    [Haswatha Sridharan](https://www.linkedin.com/in/haswatha-sridharan)
+
+    [Vamshi Krishna Aileni](https://linkedin.com/in/vamshi-krishna-1490b4187)
+
+    [Hsin-Jui Yang](https://www.linkedin.com/in/yonce-yang-93a731314/)
+
+    [Honglin Liu](https://www.linkedin.com/in/honglin-liu-8850b038b)
     """)
 
     st.header("📚 Available Policies")
-    st.markdown("""
-    - Financial Reporting
-    - Business Operations
-    - Deficit Management
-    - Out-of-State Activities
-    - Unit Financial Health
-    """)
+
+    # Create a scrollable container for policies
+    with st.container():
+        st.markdown("""
+        <div style="max-height: 400px; overflow-y: auto; padding-right: 10px;">
+
+        <b>Custodial Funds Management:</b><br>
+        • Managing Custodial Funds<br>
+        • Unit Liaison Responsibilities<br>
+        • Expenditure Procedures<br><br>
+
+        <b>Payroll & Employment:</b><br>
+        • Employee Work Time Submission<br>
+        • Employment Agreement Payments<br>
+        • Payroll Overpayment Corrections<br><br>
+
+        <b>Receivables Management:</b><br>
+        • Managing Receivables<br>
+        • GAR Charges Processing<br>
+        • Delinquent Account Collections<br><br>
+
+        <b>Business & Finance Policies:</b><br>
+        • BFPP 1.2, 1.3, 1.6
+
+        </div>
+        """, unsafe_allow_html=True)
 
     st.divider()
 
@@ -159,27 +222,27 @@ with st.sidebar:
     st.divider()
     # 檢查後端狀態（不阻塞界面載入）
     if 'backend_loaded' in st.session_state and st.session_state.backend_loaded:
-        st.success("✅ **Live Mode**: Connected to RAG backend")
+        st.success("✅ **Live Mode**: Assistant is ready")
         USE_REAL_BACKEND = True
     elif 'backend_error' in st.session_state and st.session_state.backend_error:
         st.warning("⚠️ **Demo Mode**: Using simulated responses")
-        st.error(f"Failed to load backend: {st.session_state.backend_error}")
-        if st.button("🔄 Retry loading backend"):
+        st.error(f"Could not load assistant: {st.session_state.backend_error}")
+        if st.button("🔄 Try Again"):
             st.session_state.backend_loaded = False
             st.session_state.backend_error = None
             st.session_state.backend_loading = False
             st.rerun()
         USE_REAL_BACKEND = False
     elif 'backend_loading' in st.session_state and st.session_state.backend_loading:
-        st.info("🔄 **Loading**: Initializing RAG backend...")
-        if st.button("❌ Cancel loading"):
+        st.info("🔄 **Loading**: Starting the assistant...")
+        if st.button("❌ Cancel"):
             st.session_state.backend_loading = False
             st.session_state.backend_error = "User canceled loading"
             st.rerun()
         USE_REAL_BACKEND = False
     else:
-        st.info("🔄 **Ready**: Click to initialize RAG backend")
-        if st.button("🚀 Initialize RAG backend"):
+        st.info("🔄 **Ready to help**: Click below to start")
+        if st.button("🔥 Start Assistant"):
             backend = get_backend_safe()
             st.rerun()
         USE_REAL_BACKEND = False
@@ -210,35 +273,89 @@ if st.session_state.show_welcome and len(st.session_state.messages) == 0:
 
     st.divider()
 
+# Helper function to replace source citations with popovers
+def render_with_source_popovers(content, sources):
+    """Replace 【source_X】markers with clickable popovers"""
+    if not sources:
+        return content
+
+    # Check if sources is a list of dicts (RAG mode)
+    if isinstance(sources[0], dict):
+        # Create source mapping
+        source_map = {}
+        for i, source in enumerate(sources[:3], 1):
+            category = source.get('primary_category', 'Document')
+            doc_id = source.get('document_id', f'Doc {i}')
+            source_map[f'source_{i}'] = {
+                'name': f"{category} - {doc_id}",
+                'text': source['text'],
+                'summary': source.get('summary', ''),
+                'type': source.get('content_type', 'N/A')
+            }
+    else:
+        # Demo mode
+        source_map = {}
+        for i, source_id in enumerate(sources, 1):
+            if source_id in SAMPLE_DOCS:
+                doc = SAMPLE_DOCS[source_id]
+                source_map[f'source_{i}'] = {
+                    'name': f"Policy {source_id}: {doc['title']}",
+                    'text': doc['content'],
+                    'summary': '',
+                    'type': 'Policy'
+                }
+
+    # Find all citation markers
+    pattern = r'【(source_\d+)】'
+    matches = list(re.finditer(pattern, content))
+
+    if not matches:
+        # No citations found, just display content
+        st.markdown(content)
+        return
+
+    # Display content with inline popovers
+    last_end = 0
+    cols_content = []
+
+    for match in matches:
+        # Add text before citation
+        if match.start() > last_end:
+            cols_content.append(('text', content[last_end:match.start()]))
+
+        # Add citation popover
+        source_key = match.group(1)
+        if source_key in source_map:
+            cols_content.append(('citation', source_key, source_map[source_key]))
+
+        last_end = match.end()
+
+    # Add remaining text
+    if last_end < len(content):
+        cols_content.append(('text', content[last_end:]))
+
+    # Replace citations with inline small badges
+    result_text = content
+    for match in reversed(matches):  # Reverse to maintain string positions
+        source_key = match.group(1)
+        if source_key in source_map:
+            source_info = source_map[source_key]
+            # Create a small badge-style citation
+            badge = f'<sup><small>📄 {source_info["name"]}</small></sup>'
+            result_text = result_text[:match.start()] + badge + result_text[match.end():]
+
+    # Display the text with inline citations
+    st.markdown(result_text, unsafe_allow_html=True)
+
+
 # Display chat messages
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.markdown(message["content"])
-
-        # Display sources if available
-        if message["role"] == "assistant" and "sources" in message:
-            sources = message["sources"]
-            if sources:
-                with st.expander("📄 View Sources"):
-                    # Check if sources is a list of dicts (RAG mode) or list of IDs (demo mode)
-                    if isinstance(sources[0], dict):
-                        # RAG mode - sources are dicts with detailed info
-                        for i, source in enumerate(sources, 1):
-                            st.markdown(f"**Source {i}** (Relevance: {source['score']:.3f})")
-                            st.markdown(f"**Category:** {source.get('primary_category', 'N/A')}")
-                            st.markdown(f"**Type:** {source.get('content_type', 'N/A')}")
-                            st.markdown(f"**Text:** _{source['text']}_")
-                            if source.get('summary'):
-                                st.markdown(f"**Summary:** {source['summary']}")
-                            st.divider()
-                    else:
-                        # Demo mode - sources are IDs
-                        for source_id in sources:
-                            if source_id in SAMPLE_DOCS:
-                                doc = SAMPLE_DOCS[source_id]
-                                st.markdown(f"**Policy {source_id}: {doc['title']}**")
-                                st.markdown(f"_{doc['content']}_")
-                                st.divider()
+        # Display content with inline citation popovers
+        if message["role"] == "assistant" and "sources" in message and message["sources"]:
+            render_with_source_popovers(message["content"], message["sources"])
+        else:
+            st.markdown(message["content"])
 
 # Chat input
 if prompt := st.chat_input("Ask a question about UIC policies..."):
@@ -285,27 +402,11 @@ For specific details about your question, I recommend reviewing the relevant pol
 **Note:** This is a demo system. For official policy guidance, please consult the official UIC policy documentation."""
                     sources = random.sample(list(SAMPLE_DOCS.keys()), min(2, len(SAMPLE_DOCS)))
 
-        st.markdown(response)
-
-        # Display sources
-        if backend is not None and sources:
-            with st.expander("📄 View Sources"):
-                for i, source in enumerate(sources, 1):
-                    st.markdown(f"**Source {i}** (Relevance: {source['score']:.3f})")
-                    st.markdown(f"**Category:** {source.get('primary_category', 'N/A')}")
-                    st.markdown(f"**Type:** {source.get('content_type', 'N/A')}")
-                    st.markdown(f"**Text:** _{source['text']}_")
-                    if source.get('summary'):
-                        st.markdown(f"**Summary:** {source['summary']}")
-                    st.divider()
-        elif not USE_REAL_BACKEND:
-            with st.expander("📄 View Sources"):
-                for source_id in sources:
-                    if source_id in SAMPLE_DOCS:
-                        doc = SAMPLE_DOCS[source_id]
-                        st.markdown(f"**Policy {source_id}: {doc['title']}**")
-                        st.markdown(f"_{doc['content']}_")
-                        st.divider()
+        # Display response with inline citation popovers
+        if sources:
+            render_with_source_popovers(response, sources)
+        else:
+            st.markdown(response)
 
     # Add assistant message with sources
     st.session_state.messages.append({

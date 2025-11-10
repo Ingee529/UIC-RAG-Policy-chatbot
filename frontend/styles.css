@@ -1,0 +1,109 @@
+/* styles.css (配合 config.toml 主題) */
+
+/* 1. 確保標題顏色為 UIC 海軍藍 */
+h1, h2, h3 {
+    color: #001E62 !important; /* UIC Navy Pier Blue */
+}
+
+/* 2. 將側邊欄的超連結改為 UIC 海軍藍 */
+[data-testid="stSidebar"] a:link,
+[data-testid="stSidebar"] a:visited {
+    color: #001E62 !important; 
+    text-decoration: none !important;
+}
+[data-testid="stSidebar"] a:hover,
+[data-testid="stSidebar"] a:active {
+    color: #D50032 !important; /* 滑過時變為 UIC 紅色 */
+    text-decoration: none !important;
+}
+
+/* 3. 美化 "About" 和 "Ready to help" (st.info) 方塊 */
+[data-testid="stInfo"] {
+    background-color: #E6EAF0 !important; 
+    border-color: #B0BCC7 !important; 
+    color: #333333 !important;
+}
+[data-testid="stInfo"] svg {
+    fill: #001E62 !important; 
+}
+
+/* 4. 將所有按鈕改為 UIC 海軍藍 */
+button[data-testid="stButton"],
+.stButton > button,
+button.kind-primary,
+button.kind-secondary {
+    background-color: #001E62 !important;
+    color: #ffffff !important;
+    border: 1px solid #001E62 !important;
+}
+
+button[data-testid="stButton"]:hover,
+.stButton > button:hover,
+button.kind-primary:hover,
+button.kind-secondary:hover {
+    background-color: #002a7a !important; 
+    border: 1px solid #002a7a !important;
+    color: #ffffff !important;
+}
+
+button[data-testid="stButton"]:focus,
+.stButton > button:focus,
+button.kind-primary:focus,
+button.kind-secondary:focus {
+    background-color: #001E62 !important;
+    color: #ffffff !important;
+    border: 1px solid #001E62 !important;
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #001E62 !important;
+}
+
+/* 5. 美化聊天輸入框（針對整個容器與所有可能的元素） */
+/* 針對容器 - 使用 UIC 紅色邊框 */
+[data-testid="stChatInput"],
+[data-testid="stChatInput"] > div {
+    border: 3px solid #D50032 !important;
+    border-radius: 12px !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 2px 4px rgba(213, 0, 50, 0.1) !important;
+    overflow: hidden !important;
+}
+
+/* 針對所有內部元素 */
+[data-testid="stChatInput"] *,
+[data-testid="stChatInput"] div,
+[data-testid="stChatInput"] p,
+[data-testid="stChatInput"] span,
+[data-testid="stChatInput"] [contenteditable],
+[data-testid="stChatInput"] [contenteditable="true"] {
+    color: #333333 !important;
+    border: none !important;
+    border-left: none !important;
+    caret-color: #D50032 !important; /* 游標顏色改為 UIC 紅 */
+    background-color: #ffffff !important; /* 確保內部也是白色 */
+}
+
+/* 佔位文字顏色 */
+[data-testid="stChatInput"] [data-placeholder]:empty:before,
+[data-testid="stChatInput"] *[data-placeholder]:empty:before {
+    content: attr(data-placeholder);
+    color: #666666 !important;
+}
+
+/* 聚焦效果 - 使用 UIC 紅色 */
+[data-testid="stChatInput"]:focus-within {
+    border: 3px solid #D50032 !important;
+    box-shadow: 0 0 0 3px rgba(213, 0, 50, 0.25) !important;
+}
+
+/* 6. 修正側邊欄的狀態方塊 */
+[data-testid="stSuccess"] {
+    background-color: #E6F3E6 !important;
+    border-color: #5cb85c !important;
+}
+[data-testid="stWarning"] {
+    background-color: #FFF3E0 !important;
+    border-color: #f0ad4e !important;
+}
+[data-testid="stError"] {
+    background-color: #FDEEED !important;
+    border-color: #d9534f !important;
+}
