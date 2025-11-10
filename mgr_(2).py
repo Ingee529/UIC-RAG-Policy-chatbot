@@ -803,7 +803,7 @@ import time
 
 # Set API key (you can use environment variables too)
 from openai import OpenAI
-client = OpenAI(api_key="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")  # Replace this securely
+client = OpenAI(api_key="YOUR_API_KEY")  # Replace this securely
 
 def extract_metadata_openai_v1(text: str) -> dict:
     """Use OpenAI (v1 API) to extract structured metadata from text."""
@@ -859,7 +859,7 @@ import json
 import time
 
 # Set your API key
-openai.api_key = "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"
+openai.api_key = "YOUR_API_KEY"
 
 def extract_metadata_openai(text: str) -> dict:
     """
