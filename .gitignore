@@ -1,35 +1,17 @@
+# Environment variables and secrets
+.env
+*.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.streamlit/secrets.toml
+
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-
-# Virtual Environments
-venv/
-env/
-ENV/
-MetaRAG_env/
-backend/MetaRAG_env/
-frontend/venv/
-
-# Environment Variables
-.env
-*.env
-!.env.example
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# Distribution / packaging
 build/
 develop-eggs/
 dist/
@@ -45,62 +27,62 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
+
+# Virtual environments
+venv/
+ENV/
+env/
+MetaRAG_env/
+frontend/venv/
+backend/MetaRAG_env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
 
 # Logs
 *.log
 logs/
-*.log.*
+*.txt
 
-# Database
-*.db
-*.sqlite
-*.sqlite3
-
-# Large files / Model outputs
-*.faiss
+# Data and model files
 *.pkl
-*.bin
-*.pt
-*.pth
+*.pickle
+*.npy
+*.npz
 *.h5
 *.hdf5
+*.idx
+*.faiss
+
+# Output directories
+embeddings_output/
+metadata_gen_output/
+chunk_output/
+retrieval_output/
+evaluation/
+flare_data_high_quality/
 
 # Temporary files
 *.tmp
-*.temp
+*.bak
+*.swp
 tmp/
 temp/
 
-# OS
-Thumbs.db
-.DS_Store
-
-# R
-.Rhistory
-.RData
-
-# Streamlit
-.streamlit/secrets.toml
-
-# Project specific
-backend/embeddings_output/
-backend/chunk_output/
-backend/retrieval_output/
-backend/metadata_gen_output/
-backend/evaluation/
-backend/logs/
-backend/metadata/*.json
-backend/metadata/*.pkl
-
-# Keep structure but ignore content
-!backend/embeddings_output/.gitkeep
-!backend/chunk_output/.gitkeep
-!backend/retrieval_output/.gitkeep
-!backend/metadata/.gitkeep
-
-# Exception: Include naive embedding files for Streamlit Cloud
-!backend/embeddings_output/naive/
-!backend/embeddings_output/naive/naive_embedding/
-!backend/embeddings_output/naive/naive_embedding/*.faiss
-!backend/embeddings_output/naive/naive_embedding/*.pkl
-!backend/embeddings_output/naive/naive_embedding/*.json
+# API Keys and credentials (extra safety)
+*api_key*
+*API_KEY*
+*secret*
+*SECRET*
+credentials.json
+token.json
