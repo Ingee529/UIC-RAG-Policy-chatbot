@@ -1,4 +1,0 @@
-{
-    "python.tensorBoard.useGpu": true
-    // Other GPU-related settings depending on extensions
-  }

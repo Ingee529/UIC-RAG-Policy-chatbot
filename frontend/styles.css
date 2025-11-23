@@ -107,3 +107,56 @@ button.kind-secondary:focus {
     background-color: #FDEEED !important;
     border-color: #d9534f !important;
 }
+
+/* 7. 優化側邊欄文字和間距 - 更緊湊且字體更大 */
+[data-testid="stSidebar"] {
+    padding-top: 0 !important;
+}
+
+[data-testid="stSidebar"] > div:first-child {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+[data-testid="stSidebar"] .css-1d391kg {
+    padding-top: 0 !important;
+}
+
+/* 統一側邊欄標題字體大小和顏色 */
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3 {
+    font-size: 1.05em !important;
+    margin-top: 0.3em !important;
+    margin-bottom: 0.3em !important;
+    font-weight: bold !important;
+    color: #001E62 !important; /* UIC Navy Pier Blue */
+}
+
+/* 確保側邊欄中所有粗體標題都是海軍藍 */
+[data-testid="stSidebar"] div[style*="font-weight: bold"] {
+    color: #001E62 !important;
+}
+
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] div {
+    font-size: 1em !important;
+    line-height: 1.4 !important;
+}
+
+[data-testid="stSidebar"] .stMarkdown {
+    margin-bottom: 0.3em !important;
+}
+
+[data-testid="stSidebar"] .element-container {
+    margin-bottom: 0.3em !important;
+}
+
+[data-testid="stSidebar"] hr {
+    margin: 0.5em 0 !important;
+}
+
+[data-testid="stSidebar"] button {
+    margin-top: 0.3em !important;
+    margin-bottom: 0.3em !important;
+}

@@ -48,11 +48,14 @@ backend/MetaRAG_env/
 # Jupyter Notebook
 .ipynb_checkpoints
 *.ipynb
+Copy_of_META*.ipynb
 
 # Logs
 *.log
 logs/
 *.txt
+# But allow documents in frontend/documents/
+!frontend/documents/*.txt
 
 # Data and model files
 *.pkl
@@ -64,8 +67,14 @@ logs/
 *.idx
 *.faiss
 
-# Output directories
+# Output directories (index files)
 embeddings_output/
+embeddings_output_GEMINI/
+embeddings_output_MISTRAL/
+backend/embeddings_output_GEMINI/
+backend/embeddings_output_MISTRAL/
+
+# Legacy output directories
 metadata_gen_output/
 chunk_output/
 retrieval_output/

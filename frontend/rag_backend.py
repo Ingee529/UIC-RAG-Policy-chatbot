@@ -1,6 +1,7 @@
 """
 RAG Backend Interface
-Connects to the MetaRAG retrieval system
+Connects to the Enhanced MetaRAG retrieval system (MetaRAG V2)
+STRICTLY NO LEGACY BACKEND
 """
 import sys
 import os
@@ -10,248 +11,40 @@ from pathlib import Path
 BACKEND_DIR = Path(__file__).parent.parent / "backend"
 sys.path.insert(0, str(BACKEND_DIR))
 
-from sentence_transformers import SentenceTransformer
-import faiss
-import pickle
-import json
-import numpy as np
+import streamlit as st
 
-# Import Gemini for answer generation
+# Import the MetaRAG backend (V2)
 try:
-    import google.generativeai as genai
-    GEMINI_AVAILABLE = True
+    from meta_rag.rag_backend import get_backend_v2
+    METARAG_AVAILABLE = True
+    print("✅ MetaRAG backend imported successfully")
+except ImportError as e:
+    METARAG_AVAILABLE = False
+    print(f"❌ MetaRAG backend not available: {e}")
+    raise ImportError(f"Could not import MetaRAG backend: {e}")
 
-    # Try to get API key from Streamlit secrets first (for Streamlit Cloud)
+
+@st.cache_resource(show_spinner="Loading RAG Backend...")
+def get_backend(use_reranker=True, use_gear=False, metadata_source="gemini"):
+    """
+    Get the MetaRAG backend singleton using Streamlit's cache_resource.
+    This ensures the model is loaded only once and persists across reruns.
+    
+    Args:
+        use_reranker: Whether to use BGE reranker
+        use_gear: Whether to use GEAR graph retrieval
+        metadata_source: "mistral" or "gemini" - determines which index to use (default: "gemini")
+    """
+    print(f"🚀 Loading MetaRAG Backend (Cached, metadata_source={metadata_source})...")
     try:
-        import streamlit as st
-        GEMINI_API_KEY = st.secrets.get("Gemini_API_KEY")
-        GEMINI_MODEL = st.secrets.get("GEMINI_MODEL", "gemini-flash-latest")
-        TEMPERATURE = float(st.secrets.get("TEMPERATURE", "0.5"))
-        if GEMINI_API_KEY:
-            print("✅ Using Gemini API key from Streamlit secrets")
-    except (ImportError, FileNotFoundError, KeyError):
-        # Fallback to .env file (for local development)
-        from dotenv import load_dotenv
-        env_path = BACKEND_DIR / ".env"
-        load_dotenv(env_path)
-        GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-        GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-flash-latest")
-        TEMPERATURE = float(os.getenv("TEMPERATURE", "0.5"))
-        if GEMINI_API_KEY:
-            print("✅ Using Gemini API key from .env file")
-
-except ImportError:
-    GEMINI_AVAILABLE = False
-    GEMINI_API_KEY = None
-    GEMINI_MODEL = None
-
-
-class RAGBackend:
-    """Interface to the MetaRAG retrieval system"""
-    
-    def __init__(self, embedding_dir=None):
-        """Initialize the RAG backend"""
-        if embedding_dir is None:
-            embedding_dir = BACKEND_DIR / "embeddings_output" / "naive" / "naive_embedding"
-
-        self.embedding_dir = Path(embedding_dir)
-        self.model = None
-        self.index = None
-        self.id_mapping = None
-        self.metadata = None
-        self.llm = None
-
-        self._load_resources()
-        self._init_llm()
-    
-    def _load_resources(self):
-        """Load the FAISS index, model, and metadata"""
-        # Load FAISS index
-        index_path = self.embedding_dir / "index.faiss"
-        if not index_path.exists():
-            raise FileNotFoundError(f"FAISS index not found: {index_path}")
-        
-        self.index = faiss.read_index(str(index_path))
-        
-        # Load ID mapping
-        id_mapping_path = self.embedding_dir / "id_mapping.pkl"
-        with open(id_mapping_path, 'rb') as f:
-            mapping_data = pickle.load(f)
-            self.id_mapping = mapping_data['index_to_id']
-        
-        # Load metadata
-        metadata_path = self.embedding_dir / "metadata.json"
-        with open(metadata_path, 'r') as f:
-            self.metadata = json.load(f)
-        
-        # Load embedding model
-        model_name = self.metadata.get('model_name', 'Snowflake/arctic-embed-s')
-        self.model = SentenceTransformer(model_name)
-
-        print(f"✅ Loaded RAG backend with {self.index.ntotal} vectors")
-
-    def _init_llm(self):
-        """Initialize Gemini LLM for answer generation"""
-        if GEMINI_AVAILABLE and GEMINI_API_KEY:
-            try:
-                genai.configure(api_key=GEMINI_API_KEY)
-                self.llm = genai.GenerativeModel(
-                    model_name=GEMINI_MODEL,
-                    generation_config={
-                        "temperature": TEMPERATURE,
-                        "top_p": 0.95,
-                        "max_output_tokens": 2048,
-                    }
-                )
-                print(f"✅ Gemini LLM initialized: {GEMINI_MODEL}")
-            except Exception as e:
-                print(f"⚠️ Could not initialize Gemini: {e}")
-                self.llm = None
-        else:
-            print("⚠️ Gemini not available, using simple retrieval")
-    
-    def retrieve(self, query, top_k=5):
-        """
-        Retrieve top_k most relevant chunks for the query
-        
-        Args:
-            query: User question
-            top_k: Number of results to return
-            
-        Returns:
-            List of dicts with chunk text, metadata, and scores
-        """
-        # Generate query embedding
-        query_embedding = self.model.encode([query], convert_to_numpy=True)
-        
-        # Search FAISS index
-        scores, indices = self.index.search(query_embedding, top_k)
-        
-        # Collect results
-        results = []
-        for score, idx in zip(scores[0], indices[0]):
-            if idx == -1:
-                continue
-            
-            # Convert numpy int64 to regular int
-            idx = int(idx)
-            
-            # Check if index is valid
-            if idx not in self.id_mapping:
-                print(f"Warning: Index {idx} not found in mapping, skipping...")
-                continue
-                
-            chunk_id = self.id_mapping[idx]
-            chunk_data = self.metadata[chunk_id]
-            
-            results.append({
-                'text': chunk_data.get('text', ''),
-                'score': float(score),
-                'document_id': chunk_data.get('document_id', ''),
-                'content_type': chunk_data.get('content_type', ''),
-                'summary': chunk_data.get('summary', ''),
-                'primary_category': chunk_data.get('primary_category', ''),
-                'chunk_id': chunk_id
-            })
-        
-        return results
-    
-    def generate_answer(self, query, top_k=5):
-        """
-        Retrieve relevant chunks and generate an answer
-
-        Args:
-            query: User question
-            top_k: Number of chunks to retrieve
-
-        Returns:
-            Dict with answer and sources
-        """
-        # Retrieve relevant chunks
-        results = self.retrieve(query, top_k)
-
-        if not results:
-            return {
-                'answer': "I couldn't find relevant information to answer your question.",
-                'sources': []
-            }
-
-        # Compile context from top results with document names
-        context_parts = []
-        source_names = []
-        for i, result in enumerate(results[:3], 1):
-            text = result['text']
-            summary = result.get('summary', '')
-            doc_id = result.get('document_id', f'Document {i}')
-            category = result.get('primary_category', 'Policy Document')
-
-            # Create a readable document name
-            doc_name = f"{category} - {doc_id}" if doc_id != f'Document {i}' else category
-            source_names.append(doc_name)
-
-            context_parts.append(f"Source {i} ({doc_name}):\nContent: {text}\nSummary: {summary}")
-
-        context = "\n\n".join(context_parts)
-
-        # Generate answer with LLM if available
-        if self.llm:
-            try:
-                prompt = f"""You are a helpful assistant for the UIC Vice Chancellor's Office. Answer the user's question based on the provided policy documents.
-
-Question: {query}
-
-Relevant Policy Information:
-{context}
-
-Instructions:
-- Synthesize the information from the sources to provide a helpful answer
-- **IMPORTANT: When you reference information from a source, cite it inline using this exact format: 【source_1】, 【source_2】, or 【source_3】**
-- For information from Source 1, write: 【source_1】
-- For information from Source 2, write: 【source_2】
-- For information from Source 3, write: 【source_3】
-- Place the citation immediately after the relevant statement
-- Example: "The policy requires annual reporting【source_1】"
-- You can use multiple citations: "This applies to all units【source_1】【source_2】"
-- Use the document titles, content, and summaries to construct your response
-- If the sources discuss policies, procedures, or responsibilities related to the topic, explain them
-- Focus on what the documents DO say rather than what they don't say
-- If information is partial or incomplete, explain what IS covered based on the sources
-- Use professional language appropriate for university policies
-- Be specific and reference the information provided in the sources
-
-Answer:"""
-
-                response = self.llm.generate_content(prompt)
-                answer = response.text
-
-            except Exception as e:
-                print(f"Error generating LLM answer: {e}")
-                # Fallback to simple answer
-                answer = f"""Based on the UIC Vice Chancellor's Office policy documents:
-
-{results[0]['text']}
-
-Summary: {results[0].get('summary', 'No summary available.')}"""
-        else:
-            # Simple answer without LLM
-            answer = f"""Based on the UIC Vice Chancellor's Office policy documents:
-
-{results[0]['text']}
-
-Summary: {results[0].get('summary', 'No summary available.')}"""
-
-        return {
-            'answer': answer,
-            'sources': results
-        }
-
-
-# Singleton instance
-_backend = None
-
-def get_backend():
-    """Get or create the RAG backend singleton"""
-    global _backend
-    if _backend is None:
-        _backend = RAGBackend()
-    return _backend
+        # Initialize backend with selected metadata source
+        backend = get_backend_v2(
+            use_reranker=use_reranker, 
+            use_gear=use_gear,
+            metadata_source=metadata_source
+        )
+        print(f"✅ MetaRAG loaded successfully (reranker={use_reranker}, gear={use_gear}, metadata={metadata_source})")
+        return backend
+    except Exception as e:
+        print(f"❌ Failed to load MetaRAG: {e}")
+        raise e

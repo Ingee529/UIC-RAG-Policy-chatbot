@@ -1,5 +1,5 @@
 # UIC Policy Assistant - Backend Dependencies
-# MetaRAG System Requirements
+# MetaRAG System Requirements (EXACT from META notebook)
 
 # Core ML and NLP
 numpy>=1.24.0
@@ -12,12 +12,20 @@ sentence-transformers>=2.2.0
 faiss-cpu>=1.7.4
 
 # LLM Integration
-google-generativeai>=0.8.0
+openai>=1.0.0                    # For GEAR (GPT-4o-mini triple extraction)
+google-generativeai>=0.8.0       # Legacy support
+mistralai==0.4.2                 # For metadata extraction & answer generation
 python-dotenv>=1.0.0
+
+# Deep Learning (for BGE reranker)
+torch>=2.0.0
+transformers>=4.30.0
 
 # Document Processing
 pypdf>=5.4.0
 pdfplumber>=0.11.0
+PyMuPDF>=1.23.0
+python-docx>=0.8.11
 
 # Utilities
 tqdm>=4.62.0
