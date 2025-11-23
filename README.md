@@ -1,6 +1,6 @@
-# MetaRAG: UIC Policy Assistant prototype
+# UIC Policy Assistant prototype
 
-An intelligent document retrieval and question-answering system built for the University of Illinois Chicago (UIC) Vice Chancellor's Office. This system implements an advanced Retrieval-Augmented Generation (RAG) pipeline with metadata-enriched search capabilities.
+AI-powered assistant for University of Illinois Chicago Vice Chancellor's Office policies using Meta Retrieval-Augmented Generation (MetaRAG).
 
 ## Features
 
