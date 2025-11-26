@@ -1,18 +1,3 @@
-name: Deploy to Hugging Face Space
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout GitHub repository
-      uses: actions/checkout@v4
-
     - name: Sync to Hugging Face Space
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -20,15 +5,28 @@ jobs:
         git config --global user.email "deploy@github-actions.com"
         git config --global user.name "GitHub Actions"
 
-        # 1️⃣ clone your HF Space repo (Docker Space)
+        # 1️⃣ clone 你的 HF Space repo（Docker Space）
         git clone https://user:${HF_TOKEN}@huggingface.co/spaces/Ingee529/UIC-RAG-Policy-chatbot hf_space
 
-        # 2️⃣ sync GitHub → HF
-        rsync -av --delete --exclude ".git" ./ hf_space
+        # 2️⃣ 用 rsync 同步 GitHub → HF，排除 .git 跟 hf_space 自己
+        set +e
+        rsync -av --delete \
+          --exclude ".git" \
+          --exclude "hf_space" \
+          ./ hf_space
+        status=$?
+        set -e
 
+        # 如果是 24（檔案在同步中被改變/消失），當作警告就好
+        if [ "$status" -eq 24 ]; then
+          echo "rsync returned code 24 (some files vanished). Treating as warning."
+        elif [ "$status" -ne 0 ]; then
+          echo "rsync failed with code $status"
+          exit $status
+        fi
+
+        # 3️⃣ push 到 Hugging Face Space
         cd hf_space
-
-        # 3️⃣ push if changes exist
         git add .
         git commit -m "Auto deploy from GitHub" || echo "No changes to commit"
         git push
