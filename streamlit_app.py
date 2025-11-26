@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 
 # 設定頁面
 st.set_page_config(
@@ -20,11 +21,16 @@ st.markdown("""
 
 st.divider()
 
-# 大按鈕
+# 顯示按鈕 (作為備用，萬一 JS 被擋)
 st.link_button("👉 Click Here to Go to the New App", NEW_URL, type="primary", use_container_width=True)
 
-# 嘗試自動跳轉 (部分瀏覽器支援)
-st.markdown(f'<meta http-equiv="refresh" content="0;url={NEW_URL}">', unsafe_allow_html=True)
+# ✅ 強力跳轉程式碼 (放在按鈕後面)
+# 這段 JS 會抓取最上層視窗 (window.top) 進行跳轉，突破 Iframe 限制
+js_code = f"""
+<script>
+    window.top.location.href = "{NEW_URL}";
+</script>
+"""
 
-# 顯示新網址連結 (備用)
-st.markdown(f"New Link: [{NEW_URL}]({NEW_URL})")
+# 使用 components.html 執行 JavaScript (設 height=0 隱藏它)
+components.html(js_code, height=0)
