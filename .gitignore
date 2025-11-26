@@ -95,3 +95,7 @@ temp/
 *SECRET*
 credentials.json
 token.json
+
+# (PDF/Docx)
+backend/input_files/
+frontend/documents/

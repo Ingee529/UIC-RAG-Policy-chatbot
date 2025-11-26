@@ -1,61 +1,74 @@
 """
-UIC Policy Assistant - Streamlit Cloud Entry Point (Golden Version)
-這支檔案會：
-1. 自動從 HF Dataset 下載索引資料 (解決資料分離問題)
-2. 設定正確的 Python 路徑
-3. 使用 exec 啟動前端 (保證 Streamlit 互動正常)
+UIC Policy Assistant - Streamlit Cloud Entry Point (The Bridge)
+這支檔案負責：
+1. 從 HF Dataset 下載資料 (Index + PDF)
+2. 【關鍵】將下載的 PDF 搬運到 app.py 預期的 backend/input_files 位置
+3. 啟動前端
 """
 
 import sys
 import os
+import shutil
 from pathlib import Path
 
-# ========= Step 1: 自動下載資料 (Cloud Native 策略) =========
-# 設定 Dataset 來源與本地目標目錄
-DATASET_REPO = "Ingee529/uic-policy-rag-data" # 確認這是您的 Dataset ID
+# ========= 1. 設定路徑 =========
 ROOT_DIR = Path(__file__).parent.resolve()
-LOCAL_DATA_DIR = ROOT_DIR / "backend" / "embeddings_output_GEMINI"
+BACKEND_DIR = ROOT_DIR / "backend"
+FRONTEND_DIR = ROOT_DIR / "frontend"
 
-# 建立目錄
-LOCAL_DATA_DIR.mkdir(parents=True, exist_ok=True)
+# 這是 app.py 預期找到 PDF 的地方 (本地有，但 GitHub/HF 上可能是空的)
+TARGET_DOCS_DIR = BACKEND_DIR / "input_files"
 
-# 嘗試下載 (本地如果已經有，snapshot_download 會自動跳過或用快取)
+# 這是 Dataset 下載下來的暫存位置
+DATASET_REPO = "Ingee529/uic-policy-rag-data"
+LOCAL_DATA_DIR = BACKEND_DIR / "embeddings_output_GEMINI"
+
+# ========= 2. 自動下載資料 =========
 try:
     from huggingface_hub import snapshot_download
     print(f"📥 [System] Checking/Downloading dataset: {DATASET_REPO}")
     
+    # 下載 Dataset 到 LOCAL_DATA_DIR
     snapshot_download(
         repo_id=DATASET_REPO,
         repo_type="dataset",
         local_dir=str(LOCAL_DATA_DIR),
         local_dir_use_symlinks=False,
-        # 如果 Dataset 是私有的，需要去 HF Settings 加入 HF_TOKEN 環境變數
         token=os.getenv("HF_TOKEN"), 
     )
     print(f"✅ [System] Dataset ready at: {LOCAL_DATA_DIR}")
 
+    # ========= 【關鍵修復】資料搬運工 (The Bridge) =========
+    # 檢查下載下來的資料裡，有沒有 input_files 資料夾
+    DOWNLOADED_DOCS_SOURCE = LOCAL_DATA_DIR / "input_files"
+    
+    if DOWNLOADED_DOCS_SOURCE.exists():
+        # 如果目標目錄 (backend/input_files) 不存在，就從下載的資料複製過去
+        if not TARGET_DOCS_DIR.exists():
+            print(f"📦 [System] Moving input_files from Dataset to {TARGET_DOCS_DIR}...")
+            shutil.copytree(DOWNLOADED_DOCS_SOURCE, TARGET_DOCS_DIR)
+            print("✅ [System] Documents are ready for the app!")
+        else:
+            # 如果目標已經存在 (例如本地開發，或者 GitHub 有推部分檔案)，我們就不覆蓋，以免打架
+            print(f"ℹ️ [System] Target docs dir {TARGET_DOCS_DIR} already exists. Skipping copy.")
+    else:
+        print(f"⚠️ [Warning] 'input_files' folder not found in dataset! Download buttons might fail.")
+
 except Exception as e:
     print(f"⚠️ [System] Dataset download warning: {e}")
-    print("   (如果是在本地開發且已有資料，可忽略此訊息)")
+    # 本地開發如果沒有網路或不想下載，這行會讓程式繼續跑，不會崩潰
 
-# ========= Step 2: 環境路徑設定 =========
-# 將 frontend 和 backend 加入 Python 搜尋路徑
-frontend_dir = ROOT_DIR / "frontend"
-backend_dir = ROOT_DIR / "backend"
+# ========= 3. 環境路徑設定 =========
+if str(FRONTEND_DIR) not in sys.path:
+    sys.path.insert(0, str(FRONTEND_DIR))
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
 
-if str(frontend_dir) not in sys.path:
-    sys.path.insert(0, str(frontend_dir))
-if str(backend_dir) not in sys.path:
-    sys.path.insert(0, str(backend_dir))
+# ========= 4. 啟動前端 =========
+# 切換到 frontend 目錄 (讓 app.py 能順利讀到 styles.css)
+os.chdir(FRONTEND_DIR)
 
-# ========= Step 3: 啟動前端應用 =========
-# 切換工作目錄到 frontend，這樣 app.py 讀取 styles.css 會更容易
-os.chdir(frontend_dir)
-
-# 使用 exec 執行 app.py
-# 這是 Streamlit 官方推薦的多檔案啟動方式，能確保每次 Rerun 都重新執行代碼
-# 注意：我們已經在 frontend/app.py 裡修復了路徑讀取邏輯，所以這裡用 exec 是安全的
-print(f"🚀 [System] Launching Streamlit App from: {frontend_dir / 'app.py'}")
+print(f"🚀 [System] Launching Streamlit App from: {FRONTEND_DIR / 'app.py'}")
 
 with open("app.py", encoding="utf-8") as f:
     exec(f.read())
