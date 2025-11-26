@@ -1,9 +1,10 @@
 """
-UIC Policy Assistant - Streamlit Cloud Entry Point (The Bridge)
-這支檔案負責：
-1. 從 HF Dataset 下載資料 (Index + PDF)
-2. 【關鍵】將下載的 PDF 搬運到 app.py 預期的 backend/input_files 位置
-3. 啟動前端
+UIC Policy Assistant - Streamlit Cloud Entry Point (Smart Bridge)
+功能：
+1. 下載 Dataset
+2. 自動修復「資料夾包資料夾」的巢狀問題 (Nesting Fix)
+3. 搬運 input_files
+4. 啟動 App
 """
 
 import sys
@@ -16,59 +17,83 @@ ROOT_DIR = Path(__file__).parent.resolve()
 BACKEND_DIR = ROOT_DIR / "backend"
 FRONTEND_DIR = ROOT_DIR / "frontend"
 
-# 這是 app.py 預期找到 PDF 的地方 (本地有，但 GitHub/HF 上可能是空的)
+# 資料下載目標 (這是 rag_backend 預設會去讀的地方)
+TARGET_INDEX_DIR = BACKEND_DIR / "embeddings_output_GEMINI"
 TARGET_DOCS_DIR = BACKEND_DIR / "input_files"
 
-# 這是 Dataset 下載下來的暫存位置
+# Dataset 來源
 DATASET_REPO = "Ingee529/uic-policy-rag-data"
-LOCAL_DATA_DIR = BACKEND_DIR / "embeddings_output_GEMINI"
 
 # ========= 2. 自動下載資料 =========
 try:
     from huggingface_hub import snapshot_download
-    print(f"📥 [System] Checking/Downloading dataset: {DATASET_REPO}")
+    print(f"📥 [System] Connecting to HF Dataset: {DATASET_REPO}")
     
-    # 下載 Dataset 到 LOCAL_DATA_DIR
+    # 為了避免混亂，我們先下載到一個臨時的 Cache 資料夾
+    DOWNLOAD_CACHE_DIR = BACKEND_DIR / "download_cache"
+    DOWNLOAD_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    
     snapshot_download(
         repo_id=DATASET_REPO,
         repo_type="dataset",
-        local_dir=str(LOCAL_DATA_DIR),
+        local_dir=str(DOWNLOAD_CACHE_DIR),
         local_dir_use_symlinks=False,
-        token=os.getenv("HF_TOKEN"), 
+        token=os.getenv("HF_TOKEN"),
     )
-    print(f"✅ [System] Dataset ready at: {LOCAL_DATA_DIR}")
+    print(f"✅ [System] Raw dataset downloaded to cache.")
 
-    # ========= 【關鍵修復】資料搬運工 (The Bridge) =========
-    # 檢查下載下來的資料裡，有沒有 input_files 資料夾
-    DOWNLOADED_DOCS_SOURCE = LOCAL_DATA_DIR / "input_files"
+    # ========= 3. 智慧搬運 (Smart Move) =========
     
-    if DOWNLOADED_DOCS_SOURCE.exists():
-        # 如果目標目錄 (backend/input_files) 不存在，就從下載的資料複製過去
-        if not TARGET_DOCS_DIR.exists():
-            print(f"📦 [System] Moving input_files from Dataset to {TARGET_DOCS_DIR}...")
-            shutil.copytree(DOWNLOADED_DOCS_SOURCE, TARGET_DOCS_DIR)
-            print("✅ [System] Documents are ready for the app!")
+    # --- A. 處理 Index (FAISS) ---
+    # 情況 1: 檔案在 Cache 根目錄 (正確結構)
+    # 情況 2: 檔案在 Cache/embeddings_output_GEMINI 裡面 (巢狀結構)
+    
+    source_index_dir = DOWNLOAD_CACHE_DIR
+    nested_index_dir = DOWNLOAD_CACHE_DIR / "embeddings_output_GEMINI"
+    
+    if nested_index_dir.exists():
+        print("⚠️ [System] Detected nested index folder. Adjusting path...")
+        source_index_dir = nested_index_dir
+        
+    # 把 Index 搬到正確位置 (TARGET_INDEX_DIR)
+    if not TARGET_INDEX_DIR.exists():
+        # 檢查來源有沒有關鍵檔案 (index_content.faiss 或 index.faiss)
+        has_index = any(source_index_dir.glob("*.faiss"))
+        if has_index:
+            print(f"📦 [System] Moving Index files to {TARGET_INDEX_DIR}...")
+            shutil.copytree(source_index_dir, TARGET_INDEX_DIR, dirs_exist_ok=True)
         else:
-            # 如果目標已經存在 (例如本地開發，或者 GitHub 有推部分檔案)，我們就不覆蓋，以免打架
-            print(f"ℹ️ [System] Target docs dir {TARGET_DOCS_DIR} already exists. Skipping copy.")
+            print(f"❌ [Error] No .faiss files found in {source_index_dir}!")
     else:
-        print(f"⚠️ [Warning] 'input_files' folder not found in dataset! Download buttons might fail.")
+        print(f"ℹ️ [System] Index dir already exists at {TARGET_INDEX_DIR}")
+
+    # --- B. 處理 Input Files (PDF) ---
+    source_docs_dir = DOWNLOAD_CACHE_DIR / "input_files"
+    
+    if source_docs_dir.exists():
+        if not TARGET_DOCS_DIR.exists():
+            print(f"📦 [System] Moving input_files to {TARGET_DOCS_DIR}...")
+            shutil.copytree(source_docs_dir, TARGET_DOCS_DIR)
+        else:
+            print(f"ℹ️ [System] Docs dir already exists at {TARGET_DOCS_DIR}")
+    else:
+        print("⚠️ [Warning] input_files folder not found in dataset.")
+
+    # 清理 Cache (可選)
+    # shutil.rmtree(DOWNLOAD_CACHE_DIR) 
 
 except Exception as e:
-    print(f"⚠️ [System] Dataset download warning: {e}")
-    # 本地開發如果沒有網路或不想下載，這行會讓程式繼續跑，不會崩潰
+    print(f"⚠️ [System] Setup failed: {e}")
+    # 繼續嘗試執行，也許本地已經有檔案了
 
-# ========= 3. 環境路徑設定 =========
+# ========= 4. 設定環境並啟動 =========
 if str(FRONTEND_DIR) not in sys.path:
     sys.path.insert(0, str(FRONTEND_DIR))
 if str(BACKEND_DIR) not in sys.path:
     sys.path.insert(0, str(BACKEND_DIR))
 
-# ========= 4. 啟動前端 =========
-# 切換到 frontend 目錄 (讓 app.py 能順利讀到 styles.css)
 os.chdir(FRONTEND_DIR)
-
-print(f"🚀 [System] Launching Streamlit App from: {FRONTEND_DIR / 'app.py'}")
+print(f"🚀 [System] Launching App...")
 
 with open("app.py", encoding="utf-8") as f:
     exec(f.read())
