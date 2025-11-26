@@ -1,3 +1,16 @@
+---
+title: UIC RAG Policy Chatbot
+emoji: 🚀
+colorFrom: red
+colorTo: red
+sdk: streamlit
+sdk_version: 1.40.1
+app_file: streamlit_app.py
+pinned: false
+license: mit
+short_description: AI-powered assistant for UIC policies (MetaRAG)
+---
+
 # UIC Policy Assistant prototype
 
 AI-powered assistant for University of Illinois Chicago Vice Chancellor's Office policies using Meta Retrieval-Augmented Generation (MetaRAG).
