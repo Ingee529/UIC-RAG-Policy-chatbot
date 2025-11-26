@@ -3,7 +3,7 @@ name: Deploy to Hugging Face Space
 on:
   push:
     branches:
-      - main   # 如果你的主分支不是 main，要改成對的名稱
+      - main
 
 jobs:
   deploy:
@@ -20,17 +20,15 @@ jobs:
         git config --global user.email "deploy@github-actions.com"
         git config --global user.name "GitHub Actions"
 
-        # 1️⃣ clone 你的 HF Space repo（Docker Space）
+        # 1️⃣ clone your HF Space repo (Docker Space)
         git clone https://user:${HF_TOKEN}@huggingface.co/spaces/Ingee529/UIC-RAG-Policy-chatbot hf_space
 
-        # 2️⃣ 用 rsync 把 GitHub 的檔案同步過去
-        #   --delete：把 HF 裡面 GitHub 已經刪掉的檔也一併刪掉
-        #   --exclude ".git"：不要覆蓋 HF 自己的 .git 資料夾
+        # 2️⃣ sync GitHub → HF
         rsync -av --delete --exclude ".git" ./ hf_space
 
         cd hf_space
 
-        # 3️⃣ commit + push，如果沒有變更就略過
+        # 3️⃣ push if changes exist
         git add .
         git commit -m "Auto deploy from GitHub" || echo "No changes to commit"
         git push
