@@ -13,34 +13,49 @@ import base64
 import os
 import shutil
 
-# ========= 1. 智慧路徑設定 (Smart Path Setup) =========
-# 目標：準確找到 FRONTEND_DIR, BACKEND_DIR 和 ROOT_DIR
-
+# ========= 智慧路徑設定 (修正版) =========
 try:
-    # 情況 A: 本地直接執行 (有 __file__)
-    CURRENT_FILE = Path(__file__).resolve()
-    FRONTEND_DIR = CURRENT_FILE.parent
-except NameError:
-    # 情況 B: 在 HF Space 被 exec() 執行 (無 __file__)
-    # 假設當前工作目錄是在 frontend (因為 streamlit_app.py 做了 chdir)
-    # 或者當前工作目錄是根目錄
-    cwd = Path.cwd()
-    if (cwd / "app.py").exists() and (cwd / "styles.css").exists():
-         # 我們就在 frontend 目錄裡
-        FRONTEND_DIR = cwd
-    elif (cwd / "frontend" / "app.py").exists():
-        # 我們在根目錄
-        FRONTEND_DIR = cwd / "frontend"
+    # 取得當前執行檔案的路徑
+    current_path = Path(__file__).resolve()
+    
+    # 判斷：如果這個檔案是 streamlit_app.py (根目錄入口)，代表是被 exec 呼叫的
+    # 這時候我們雖然在跑 app.py，但 __file__ 卻是指向外殼程式
+    if current_path.name == "streamlit_app.py":
+        ROOT_DIR = current_path.parent
+        FRONTEND_DIR = ROOT_DIR / "frontend"
+        print("📂 [Path Logic] Detected exec mode via streamlit_app.py")
     else:
-        # 盲猜 (HF 標準路徑)
+        # 正常情況：直接執行 frontend/app.py (本地開發)
+        FRONTEND_DIR = current_path.parent
+        ROOT_DIR = FRONTEND_DIR.parent
+        print("📂 [Path Logic] Detected direct execution of app.py")
+
+except NameError:
+    # 備用方案 (HF exec 模式下有時沒有 __file__)
+    cwd = Path.cwd()
+    if (cwd / "frontend").exists():
+        ROOT_DIR = cwd
+        FRONTEND_DIR = cwd / "frontend"
+    elif (cwd / "app.py").exists() and (cwd.parent / "backend").exists():
+        FRONTEND_DIR = cwd
+        ROOT_DIR = cwd.parent
+    else:
+        # 硬猜 Hugging Face 標準路徑 (最後一道防線)
+        ROOT_DIR = Path("/app")
         FRONTEND_DIR = Path("/app/frontend")
 
-# 尋找 ROOT_DIR (專案根目錄)
-# 邏輯：FRONTEND_DIR 的上一層應該就是 ROOT_DIR
-ROOT_DIR = FRONTEND_DIR.parent
-
-# 定義 BACKEND_DIR
+# 設定 Backend 路徑
 BACKEND_DIR = ROOT_DIR / "backend"
+
+# 強制除錯訊息 (請在 Logs 確認這些路徑！)
+print(f"📂 [Path Fix] ROOT_DIR: {ROOT_DIR}")
+print(f"📂 [Path Fix] FRONTEND_DIR: {FRONTEND_DIR}")
+print(f"📂 [Path Fix] BACKEND_DIR: {BACKEND_DIR}")
+print(f"📂 [Path Fix] Input Files Exists? {(BACKEND_DIR / 'input_files').exists()}")
+
+# Add backend directory to Python path
+if str(BACKEND_DIR) not in sys.path:
+    sys.path.insert(0, str(BACKEND_DIR))
 
 # 除錯訊息 (可以在終端機看到)
 print(f"📂 [Path Debug] FRONTEND_DIR: {FRONTEND_DIR}")
@@ -104,65 +119,71 @@ def setup_documents_directory() -> Path:
     
     return documents_dir
 
-
+# Source download function
 def get_document_path(document_id=None, source_text: str = "") -> Path | None:
-    """根據 document_id 或 source_text 嘗試對應到檔案"""
+    """
+    根據 document_id 或 source_text 嘗試對應到檔案。
+    支援遞迴搜尋 (Recursive Search) 以處理子目錄結構。
+    """
     
-    # 搜尋順序：
-    # 1. backend/input_files (原始位置 - 本地最準)
-    # 2. frontend/documents (複製位置)
+    # 定義搜尋範圍 (BACKEND_DIR 必須在 app.py 開頭正確設定)
     search_dirs = [
         BACKEND_DIR / "input_files",
         FRONTEND_DIR / "documents"
     ]
     
-    # 也許在子目錄裡 (例如 '1 Fiscal Environment')
-    # 我們先收集所有可能的 PDF/TXT 檔案路徑
-    all_candidates = []
+    # 1. 建立全域檔案索引 (Cache map)
+    # 這會把所有子資料夾裡的檔案都抓出來，做成 {檔名: 路徑} 的字典
+    file_map = {}
     for d in search_dirs:
         if d.exists():
-            # 遞迴搜尋所有檔案
-            all_candidates.extend(list(d.rglob("*.pdf")))
-            all_candidates.extend(list(d.rglob("*.txt")))
-
-    if not all_candidates:
-        return None
-
+            # rglob('*') 會鑽進所有子目錄 (例如 '1 Fiscal Environment')
+            for f in d.rglob("*"):
+                if f.is_file() and f.suffix.lower() in ['.pdf', '.txt', '.docx']:
+                    # 建立多種鍵值方便查找
+                    file_map[f.name.lower()] = f       # 全名 (小寫) e.g. "1.1 policy.pdf"
+                    file_map[f.stem.lower()] = f       # 無副檔名 (小寫) e.g. "1.1 policy"
+    
+    # 2. 開始比對
     target_file = None
 
-    # A. 從 source_text 中提取文檔標題 (RAG 回傳的 pattern)
+    # A. 從 RAG source_text 比對
     if source_text:
         match = re.search(r'Document Title:\s*([^\n]+)', source_text)
         if match:
             doc_title = match.group(1).strip()
-            # 提取編號部分（如 1.6, 2.1, 4.3.2）
+            # 處理破折號差異 (– vs -) 並取主要標題
+            clean_title = doc_title.lower().replace('–', '-').split(' - ')[0].strip()
+            
+            # 策略 1: 直接查表 (最快)
+            if doc_title.lower() in file_map: return file_map[doc_title.lower()]
+            
+            # 策略 2: 用編號找 (1.6, 2.1)
             number_match = re.search(r'(\d+(?:\.\d+)+)', doc_title)
-            
             if number_match:
-                doc_number = number_match.group(1) # e.g. "1.6"
-                
-                # 策略 1: 檔名包含 "1.6 " (注意空格) 或 "1.6_"
-                for f in all_candidates:
-                    if f.name.startswith(doc_number + " ") or f.name.startswith(doc_number + "_"):
-                        return f
-                    # 有些檔名可能是 "1.6_Exceptions..."
-                    if doc_number in f.name:
-                         target_file = f # 先暫存，繼續找更精確的
+                doc_num = number_match.group(1)
+                for name, path in file_map.items():
+                    # 比對 "1.6 " 或 "1.6_" 或 "1.6." 開頭的檔案
+                    if name.startswith(doc_num + " ") or name.startswith(doc_num + "_") or name.startswith(doc_num + "."):
+                        return path
             
-            # 如果沒有編號，嘗試用標題文字模糊比對
-            clean_title = doc_title.split("–")[0].strip()[:20] # 取前20字
-            for f in all_candidates:
-                if clean_title.lower() in f.name.lower():
-                    return f
+            # 策略 3: 模糊搜尋 (只要檔名包含標題關鍵字)
+            for name, path in file_map.items():
+                if clean_title in name:
+                    return path
 
-    # B. document_id 直接對應檔名 (Demo 模式)
+    # B. 從 document_id 比對 (Demo 模式用)
     if document_id:
-        doc_id_clean = str(document_id).lower().replace(" ", "_").replace(".", "_")
-        for f in all_candidates:
-            if doc_id_clean in f.stem.lower():
-                return f
+        doc_id_clean = str(document_id).lower().replace(" ", "_")
+        # 優先找開頭相符的 (例如 "1.1" 對應 "1.1 System...")
+        for name, path in file_map.items():
+            if name.startswith(doc_id_clean):
+                return path
+        # 最後嘗試直接包含
+        if doc_id_clean in file_map:
+            return file_map[doc_id_clean]
 
-    return target_file
+    return None
 
 
 def create_download_button(file_path: Path | None, button_text: str = "📥 Download Document") -> None:
