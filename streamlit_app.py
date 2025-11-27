@@ -10,18 +10,22 @@ Features:
 import sys
 import os
 import subprocess
-try:
-    import faiss
-    print("✅ FAISS is already installed.")
-except ImportError:
-    print("⚠️ FAISS not found! Force installing faiss-cpu...")
+def force_install(package_name, import_name):
     try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "faiss-cpu"])
-        import faiss
-        print("✅ FAISS installed successfully!")
-    except Exception as e:
-        print(f"❌ Failed to install FAISS: {e}")
-        
+        __import__(import_name)
+        print(f"✅ {package_name} (module: {import_name}) is already installed.")
+    except ImportError:
+        print(f"⚠️ {package_name} not found! Force installing...")
+        try:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package_name])
+            print(f"✅ {package_name} installed successfully!")
+        except Exception as e:
+            print(f"❌ Failed to install {package_name}: {e}")
+
+
+force_install("faiss-cpu", "faiss")
+force_install("sentence-transformers", "sentence_transformers")
+
 import shutil
 from pathlib import Path
 
