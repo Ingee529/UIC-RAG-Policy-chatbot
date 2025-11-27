@@ -1,0 +1,128 @@
+/* styles.css - Optimized for Streamlit UIC Theme */
+
+/* Define Variables for easy maintenance */
+:root {
+    --uic-navy: #001E62;
+    --uic-navy-hover: #002a7a;
+    --uic-red: #D50032;
+    --text-dark: #333333;
+    --bg-light: #ffffff;
+    --bg-info: #E6EAF0;
+    --border-info: #B0BCC7;
+}
+
+/* 1. Headings */
+h1, h2, h3 {
+    color: var(--uic-navy) !important;
+}
+
+/* 2. Sidebar Hyperlinks */
+[data-testid="stSidebar"] a {
+    color: var(--uic-navy) !important;
+    text-decoration: none !important;
+}
+
+[data-testid="stSidebar"] a:hover,
+[data-testid="stSidebar"] a:active {
+    color: var(--uic-red) !important;
+}
+
+/* 3. Info Boxes (About / Ready to help) */
+[data-testid="stInfo"] {
+    background-color: var(--bg-info) !important;
+    border-color: var(--border-info) !important;
+    color: var(--text-dark) !important;
+}
+[data-testid="stInfo"] svg {
+    fill: var(--uic-navy) !important;
+}
+
+/* 4. Buttons - Simplified Selector */
+/* Targeting the button element directly inside Streamlit's wrapper is usually enough */
+.stButton > button {
+    background-color: var(--uic-navy) !important;
+    color: #ffffff !important;
+    border: 1px solid var(--uic-navy) !important;
+    transition: all 0.2s ease !important; /* Add smooth transition */
+}
+
+.stButton > button:hover {
+    background-color: var(--uic-navy-hover) !important;
+    border-color: var(--uic-navy-hover) !important;
+}
+
+.stButton > button:focus {
+    box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--uic-navy) !important;
+}
+
+/* 5. Chat Input - Cleaned up "Shotgun" selectors */
+/* Input Container */
+[data-testid="stChatInput"] {
+    border: 3px solid var(--uic-red) !important;
+    border-radius: 12px !important;
+    background-color: var(--bg-light) !important;
+    box-shadow: 0 2px 4px rgba(213, 0, 50, 0.1) !important;
+}
+
+/* Focus Effect on Container */
+[data-testid="stChatInput"]:focus-within {
+    box-shadow: 0 0 0 3px rgba(213, 0, 50, 0.25) !important;
+}
+
+/* The actual input text area */
+[data-testid="stChatInput"] textarea,
+[data-testid="stChatInput"] input {
+    color: var(--text-dark) !important;
+    caret-color: var(--uic-red) !important;
+    background-color: transparent !important; /* Use container's background */
+}
+
+/* Placeholder text */
+[data-testid="stChatInput"] ::placeholder {
+    color: #666666 !important;
+    opacity: 1 !important;
+}
+
+/* 6. Status Messages */
+[data-testid="stSuccess"] {
+    background-color: #E6F3E6 !important;
+    border-color: #5cb85c !important;
+}
+[data-testid="stWarning"] {
+    background-color: #FFF3E0 !important;
+    border-color: #f0ad4e !important;
+}
+[data-testid="stError"] {
+    background-color: #FDEEED !important;
+    border-color: #d9534f !important;
+}
+
+/* 7. Sidebar Layout Optimization */
+/* Remove top padding to align with header */
+[data-testid="stSidebar"] > div:first-child {
+    padding-top: 0rem !important;
+}
+
+/* Sidebar Text & Headers */
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] div[style*="font-weight: bold"] {
+    color: var(--uic-navy) !important;
+    font-size: 1.05em !important;
+}
+
+/* Global Sidebar Text Sizing */
+[data-testid="stSidebar"] .stMarkdown p {
+    font-size: 1em !important;
+    line-height: 1.4 !important;
+}
+
+/* Reduce gap between elements in sidebar */
+[data-testid="stSidebar"] .element-container {
+    margin-bottom: 0.5rem !important;
+}
+
+[data-testid="stSidebar"] hr {
+    margin: 1rem 0 !important;
+}
