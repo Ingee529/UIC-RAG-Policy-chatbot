@@ -10,10 +10,19 @@ Features:
 import sys
 import os
 import subprocess
+
+REQUIRED_PACKAGES = [
+    ("faiss-cpu", "faiss"),
+    ("sentence-transformers", "sentence_transformers"),
+    ("python-dotenv", "dotenv"),
+    ("huggingface_hub", "huggingface_hub"),
+    ("pandas", "pandas")
+]
+
 def force_install(package_name, import_name):
     try:
         __import__(import_name)
-        print(f"✅ {package_name} (module: {import_name}) is already installed.")
+        print(f"✅ {package_name} is already installed.")
     except ImportError:
         print(f"⚠️ {package_name} not found! Force installing...")
         try:
@@ -23,8 +32,9 @@ def force_install(package_name, import_name):
             print(f"❌ Failed to install {package_name}: {e}")
 
 
-force_install("faiss-cpu", "faiss")
-force_install("sentence-transformers", "sentence_transformers")
+print("🔄 [System] Checking critical dependencies...")
+for pkg, imp in REQUIRED_PACKAGES:
+    force_install(pkg, imp)
 
 import shutil
 from pathlib import Path
