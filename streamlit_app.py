@@ -9,8 +9,22 @@ Features:
 
 import sys
 import os
+import subprocess
+try:
+    import faiss
+    print("✅ FAISS is already installed.")
+except ImportError:
+    print("⚠️ FAISS not found! Force installing faiss-cpu...")
+    try:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "faiss-cpu"])
+        import faiss
+        print("✅ FAISS installed successfully!")
+    except Exception as e:
+        print(f"❌ Failed to install FAISS: {e}")
+        
 import shutil
 from pathlib import Path
+
 
 # ========= 1. Path configuration =========
 ROOT_DIR = Path(__file__).parent.resolve()
