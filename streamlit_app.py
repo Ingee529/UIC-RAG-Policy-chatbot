@@ -16,7 +16,8 @@ REQUIRED_PACKAGES = [
     ("sentence-transformers", "sentence_transformers"),
     ("python-dotenv", "dotenv"),
     ("huggingface_hub", "huggingface_hub"),
-    ("pandas", "pandas")
+    ("pandas", "pandas"),
+    ("google-generativeai", "google.generativeai")
 ]
 
 def force_install(package_name, import_name):

@@ -54,6 +54,7 @@ Copy_of_META*.ipynb
 *.log
 logs/
 *.txt
+!requirements.txt
 # But allow documents in frontend/documents/
 !frontend/documents/*.txt
 
